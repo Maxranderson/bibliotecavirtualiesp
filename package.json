@@ -1,0 +1,16 @@
+{
+  "name": "biblioteca-virtual-iesp",
+  "version": "0.1.0",
+  "description": "Projeto da biblioteca virtual do iesp",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "biblioteca",
+    "virtual",
+    "iesp"
+  ],
+  "author": "Maxranderson Araujo",
+  "license": "ISC"
+}
