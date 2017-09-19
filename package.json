@@ -12,5 +12,10 @@
     "iesp"
   ],
   "author": "Maxranderson Araujo",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "consign": "^0.1.6",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4"
+  }
 }
