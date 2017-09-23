@@ -5,6 +5,6 @@ module.exports = function (server) {
     });
 
     server.get('/admin', function(req, res){
-        res.render('admin/index', {contentTitle:"Home"});
+        res.render('admin/index');
     });
 }
