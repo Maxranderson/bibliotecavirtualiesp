@@ -4,7 +4,7 @@ module.exports = function (server) {
         res.render("index");
     });
 
-    server.get('/admin/publicacoes', function(req, res){
-        res.render('admin/publicacao/lista');
+    server.get('/admin', function(req, res){
+        res.render('admin/index', {contentTitle:"Home"});
     });
 }
