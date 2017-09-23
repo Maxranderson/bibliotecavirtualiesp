@@ -1,12 +1,8 @@
 var mysql = require('mysql');
+var config = require('../../config/dbConfig');
 
 function createDBConnection(){
-    return mysql.createConnection({
-        host: '192.168.1.17',
-        user: 'root',
-        password: 'teste123',
-        database: 'biblioteca_digital'
-    });
+    return mysql.createConnection(config);
 }
 
 module.exports = function(){
