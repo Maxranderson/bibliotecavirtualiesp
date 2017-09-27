@@ -11,7 +11,12 @@ module.exports = function (server) {
         res.render('admin/publicacao/lista',{paginacao:paginacao,publicacoes:{}});
     });
 
-    server.get('/admin/publicacoes/cadastrar', function(req, res){
+    server.get('/admin/publicacoes/cadastrar', function(req, res){      
         res.render('admin/publicacao/form');
+    });
+
+    server.post('/admin/publicacoes/cadastrar', function(req, res){
+        console.log(req.body);
+        res.redirect('/admin/publicacoes/cadastrar');
     });
 }

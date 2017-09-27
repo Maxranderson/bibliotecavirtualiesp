@@ -1,4 +1,4 @@
-<%- include('../template/top', {contentTitle:"Cadastrar nova publicação", pageSelected:{publicacoes:"active"}});%>
+<%- include('../template/top', {contentTitle:"Publicações", pageSelected:{publicacoes:"active"}});%>
 
 <div class="content">
     <div class="container-fluid">
@@ -6,16 +6,16 @@
             <div class="row"> <div class="col-md-12">
                 <div class="card">
                     <div class="card-header" data-background-color="red">
-                        <h4 class="title">Edit Profile</h4>
-                        <p class="category">Complete your profile</p>
+                        <h4 class="title">Cadastrar Publicação</h4>
+                        <p class="category">Preencha os dados</p>
                     </div>
                     <div class="card-content">
-                        <form>
+                        <form action="/admin/publicacoes/cadastrar" method="POST">
                             <div class="row"> 
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Título</label>
-                                        <input type="text" class="form-control" maxlength="300">
+                                        <input type="text" class="form-control" name="titulo" required>
                                     </div>
                                 </div>
                             </div>
@@ -23,7 +23,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Autor</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="autor" required>
                                     </div>
                                 </div>
                             </div>
@@ -31,7 +31,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Organizador</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="organizador">
                                     </div>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Curso</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="curso">
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Editora</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="editora">
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Número de edição</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="numero_edicao">
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Tipo de publicação</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="tipo_publicacao" required>
                                     </div>
                                 </div>
                             </div>
@@ -73,25 +73,25 @@
                                 <div class="col-md-2">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Idioma</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="idioma">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group label-floating">
                                         <label class="control-label">País da publicação</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="pais_publicacao">
                                     </div>
                                 </div>
                                 <div class="col-md-1">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Ano</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="ano_publicacao">
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Instituição</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="instituicao">
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Sumário</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="sumario">
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Referências</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="referencias">
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Palavras-chave</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="palavras_chaves">
                                     </div>
                                 </div>
                             </div>
@@ -124,8 +124,7 @@
                                     <div class="form-group">
                                         <label>Resumo/Sinopse</label>
                                         <div class="form-group label-floating">
-                                            <label class="control-label"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                                            <textarea class="form-control" rows="5"></textarea>
+                                            <textarea class="form-control" rows="5" name="resumo_sinopse"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +133,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">ISBN/ISSN</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="isbn_issn">
                                     </div>
                                 </div>
                             </div>
