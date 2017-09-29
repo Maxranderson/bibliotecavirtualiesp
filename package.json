@@ -20,5 +20,8 @@
     "express": "^4.15.4",
     "express-session": "^1.15.5",
     "mysql": "^2.14.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.8.0"
   }
 }

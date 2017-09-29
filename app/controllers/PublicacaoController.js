@@ -8,15 +8,36 @@ module.exports = function (server) {
         if(req.query.page){
             paginacao.currentPage = req.query.page;
         }
-        res.render('admin/publicacao/lista',{paginacao:paginacao,publicacoes:{}});
+        var publicacao = new server.app.models.Publicacao();
+        publicacao.list(function(erro, results){
+            if(erro){
+                console.log(erro);
+                res.render('admin/publicacao/lista',{paginacao:paginacao,publicacoes:{},erros:erro})
+            }
+            res.render('admin/publicacao/lista',{paginacao:paginacao,publicacoes:results,erros:{}});
+        });
     });
 
-    server.get('/admin/publicacoes/cadastrar', function(req, res){      
-        res.render('admin/publicacao/form');
+    server.get('/admin/publicacoes/cadastrar', function(req, res){
+        var msgm = {}
+        if(req.session.msgm){
+            msgm = req.session.msgm;
+            req.session.msgm = null;
+        }      
+        res.render('admin/publicacao/form', {mensagem:msgm});
     });
 
-    server.post('/admin/publicacoes/cadastrar', function(req, res){
-        console.log(req.body);
-        res.redirect('/admin/publicacoes/cadastrar');
+    server.post('/admin/publicacoes', function(req, res){
+        var publicacao = new server.app.models.Publicacao();
+        publicacao.insert(req.body, function(erro, result, fields){
+            req.session.msgm = {};
+            if(erro){
+                console.log(erro);
+                req.session.msgm.erro = erro.msg;
+            }else{
+                req.session.msgm.sucesso = "Publicação cadastrada com sucesso!";
+            }
+            res.redirect('/admin/publicacoes/cadastrar');
+        });
     });
 }
