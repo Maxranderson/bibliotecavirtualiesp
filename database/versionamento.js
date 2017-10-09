@@ -1,10 +1,10 @@
-function migrarBanco(){
+function migrarBanco(server){
     var versaoBanco = 1;
     console.log("Migrando o banco para a versão "+versaoBanco);
     var scripts = importarScripts(versaoBanco);
 
     var mysql = require('mysql');
-    var connectionConfig = require('../config/dbConfig');
+    var connectionConfig = server.locals.variables.database.default;
     var connection = mysql.createConnection(connectionConfig);
     for(var i = 0; i<scripts.length; i++){
         var numero = i+1;
