@@ -1,0 +1,10 @@
+{
+    "database": {
+        "default": {
+            "host": "endereco",
+            "user": "usuario",
+            "password": "senha",
+            "database": "nome_do_banco"
+        }
+    }
+}
