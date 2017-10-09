@@ -42,5 +42,7 @@ module.exports = function () {
                 .then('./routes.js')
                 .into(server);
 
+    consign().include('./database/versionamento.js').into(server);
+
     return server;
 }
