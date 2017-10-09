@@ -1,5 +1,7 @@
-module.exports = function (server) {
-    server.get('/', function (req, res) {
-        res.render("index");
-    });
+module.exports = function(app){
+        this.index = function (req, res) {
+                res.render("index");
+        };
+        
+        return this;
 }

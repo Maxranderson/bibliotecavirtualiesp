@@ -1,6 +1,8 @@
-module.exports = function (server) {
-    server.get('/admin', function(req, res){
+module.exports = function(app){
+
+    this.index = function(req, res){
         res.render('admin/index');
-    });
+    };
     
+   return this; 
 }

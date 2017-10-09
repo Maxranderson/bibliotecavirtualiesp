@@ -1,5 +1,6 @@
-module.exports = function (server) {
-    server.get('/admin/publicacoes', function(req, res){
+module.exports = function (app) {
+    
+    this.lista = function(req, res){
         var paginacao = {
             currentPage: 1,
             pageCount: 5,
@@ -8,7 +9,7 @@ module.exports = function (server) {
         if(req.query.page){
             paginacao.currentPage = req.query.page;
         }
-        var publicacao = new server.app.models.Publicacao();
+        var publicacao = new app.models.Publicacao();
         publicacao.list(function(erro, results){
             if(erro){
                 console.log(erro);
@@ -16,19 +17,19 @@ module.exports = function (server) {
             }
             res.render('admin/publicacao/lista',{paginacao:paginacao,publicacoes:results,erros:{}});
         });
-    });
+    };
 
-    server.get('/admin/publicacoes/cadastrar', function(req, res){
+    this.form = function(req, res){
         var msgm = {}
         if(req.session.msgm){
             msgm = req.session.msgm;
             req.session.msgm = null;
         }      
         res.render('admin/publicacao/form', {mensagem:msgm});
-    });
+    };
 
-    server.post('/admin/publicacoes', function(req, res){
-        var publicacao = new server.app.models.Publicacao();
+    this.cadastra = function(req, res){
+        var publicacao = new app.models.Publicacao();
         publicacao.insert(req.body, function(erro, result, fields){
             req.session.msgm = {};
             if(erro){
@@ -39,5 +40,7 @@ module.exports = function (server) {
             }
             res.redirect('/admin/publicacoes/cadastrar');
         });
-    });
+    };
+    
+    return this;
 }

@@ -4,7 +4,7 @@ var consign = require('consign');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var config = require('./config.json');
-var fs = require('fs');
+var passport = require('passport');
 
 function seExisteLocalConfig(){
     try{
@@ -23,20 +23,23 @@ module.exports = function () {
     server.use(bodyParser.urlencoded({extended: true}));
     server.use(bodyParser.json());
     server.use(session({secret: 'sssshhhh', resave:false, saveUninitialized: false}));
+    server.use(passport.initialize());
+    server.use(passport.session());
 
     //Importando as variáveis de ambiente do server
     server.locals.variables = config;
     //Verificando as variáveis locais e importando
     if(seExisteLocalConfig()){
-        console.log("Existe o local!");
         var local = require('./localConfig.json');
         server.locals.variables.database = local.database;
     }
 
-    consign().include('./app/controllers')
-                .then('./app/dao')
-                .then('./app/factorys')
-                .then('./app/models')
+    consign({cwd:'app'})
+                .include('./controllers')
+                .then('./dao')
+                .then('./factorys')
+                .then('./models')
+                .then('./routes.js')
                 .into(server);
 
     return server;
