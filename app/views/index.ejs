@@ -1,166 +1,244 @@
- <!DOCTYPE html>
-  <html>
-    <head>
-      <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="css/custom.css"  media="screen,projection"/>
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+<!DOCTYPE html>
+<html lang="en">
 
-    <body style="background-color: #f0f0f0">
+<head>
+        <meta charset="utf-8" />
+        <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png">
+        <link rel="icon" type="image/png" href="/img/favicon.png">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title>Biblioteca Virtual - IESP</title>
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+        <!--     Fonts and icons     -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+        <!-- CSS Files -->
+        <link href="/css/bootstrap-v4.min.css" rel="stylesheet" />
+        <link href="/css/now-ui-kit.css?v=1.1.0" rel="stylesheet" />
+        <!-- CSS Just for demo purpose, don't include it in your project -->
+        <link href="/css/demo-ui-kit.css" rel="stylesheet" />
+</head>
 
-			<nav class="nav-extended menu">
-				<div class="nav-wrapper menu">
-						<a href="#" class="brand-logo">
-							<img class="logo-iesp" src="img/logo-I-001.png"></img>
-						</a>
-					<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-					<ul id="nav-mobile" class="right hide-on-med-and-down">
-						<li><a href="sass.html">Sass</a></li>
-						<li><a href="badges.html">Components</a></li>
-						<li><a href="collapsible.html">JavaScript</a></li>
-					</ul>
-					<ul class="side-nav" id="mobile-demo">
-						<li><a href="sass.html">Sass</a></li>
-						<li><a href="badges.html">Components</a></li>
-						<li><a href="collapsible.html">JavaScript</a></li>
-					</ul>
-				</div>
-				<div class="nav-content">
-					<ul class="tabs tabs-transparent">
-						<li class="tab"><a href="#test1">Test 1</a></li>
-						<li class="tab"><a class="active" href="#test2">Test 2</a></li>
-						<li class="tab"><a href="#test4">Test 4</a></li>
-					</ul>
-				</div>
-			</nav>
-			<!--<div id="test1" class="col s12">Test 1</div>
-			<div id="test2" class="col s12">Test 2</div>
-			<div id="test3" class="col s12">Test 3</div>
-			<div id="test4" class="col s12">Test 4</div>-->
+<body class="index-page sidebar-collapse">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-danger fixed-top navbar-transparent " color-on-scroll="400">
+        <!-- <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand" href="http://demos.creative-tim.com/now-ui-kit/index.html" rel="tooltip" title="Designed by Invision. Coded by Creative Tim" data-placement="bottom" target="_blank">
+                    Now Ui Kit
+                </a>
+                <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end" data-nav-image="/img/blurred-image-1.jpg">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
+                            <i class="now-ui-icons arrows-1_cloud-download-93"></i>
+                            <p>Download</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./documentation/tutorial-components.html" target="_blank">
+                            <i class="now-ui-icons files_paper"></i>
+                            <p>Components</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-neutral" href="https://www.creative-tim.com/product/now-ui-kit-pro" target="_blank">
+                            <i class="now-ui-icons arrows-1_share-66"></i>
+                            <p>Upgrade to PRO</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank">
+                            <i class="fa fa-twitter"></i>
+                            <p class="d-lg-none d-xl-none">Twitter</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank">
+                            <i class="fa fa-facebook-square"></i>
+                            <p class="d-lg-none d-xl-none">Facebook</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
+                            <i class="fa fa-instagram"></i>
+                            <p class="d-lg-none d-xl-none">Instagram</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div> -->
+    </nav>
+    <!-- End Navbar -->
+    <div class="wrapper">
+        <div class="page-header clear-filter" filter-color="orange">
+            <div class="page-header-image" data-parallax="true" style="background-image: url('/img/header.jpg');">
+            </div>
+            <div class="container">
+                <div class="col-md-4 content-center search-content">
 
-			<div class="container">	
+                    <div class="brand search-header">
+                        <img class="n-logo" src="/img/logo-I-001.png" alt="">
+                        <form class="form" method="GET" action="/2">
+                            <div class="content">
+                                <div class="input-group form-group-no-border input-lg search-div">
+                                    <input type="text" class="form-control search-input" placeholder="Pesquisar" name="filtro">
+                                    <button class="btn search-advanced" onclick="event.preventDefault()" data-toggle="modal" data-target="#pesquisaAvancada">Avançada</button>
+                                    <button type="submit" class="btn search-span">
+                                        <span>
+                                            <i class="now-ui-icons ui-1_zoom-bold"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="section section-tabs">
+                <div class="container">
+                    <h3 class="title">Últimas públicações</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row card-publicacao">
+                                <div class="col-4 col-md-4 card-image">
+                                    <img src="/img/sidebar-4.jpg" alt="">
+                                </div>
+                                <div class="col-8 col-md-8 card-content">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <!-- Tab panes -->
+                                            <div class="tab-content text-justify">
+                                                <div class="tab-pane active" id="home" role="tabpanel">
+                                                    <h6>EDUCOMUNICAÇÃO: TECENDO NOVAS REDES DE CONHECIMENTO E ROMPENDO PARADIGMAS NA ESCOLA MUNICIPAL VEREADOR JOSÉ GRIMAUDO TAVARES, A POLÍTICA NACIONAL DE ASSISTÊNCIA TÉCNICA...</h6>
+                                                    <p><strong>Autor: </strong>Jan Edson Rodrigues Leite; Hercilio de Medeiros Sousa; Estevão Domingos Soares de Oliveira; Maxranderson Rodrigues Araújo</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="#" class="card-link" style="position: absolute; bottom: 7px; right: 20px;">Leia mais...</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sart Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h4 class="title title-up">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default">Nice Button</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  End Modal -->
+        <!-- Mini Modal -->
+        <div class="modal fade modal-mini modal-primary" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <div class="modal-profile">
+                            <i class="now-ui-icons users_circle-08"></i>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <p>Always have an access to your profile</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link btn-neutral">Back</button>
+                        <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  End Modal -->
+        <footer class="footer" data-background-color="black">
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="https://www.creative-tim.com">
+                                Creative Tim
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://presentation.creative-tim.com">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://blog.creative-tim.com">
+                                Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
+                                MIT License
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>, Designed by
+                    <a href="http://www.invisionapp.com" target="_blank">Invision</a>. Coded by
+                    <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+<!--   Core JS Files   -->
+<script src="/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="/js/popper.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap-v4.min.js" type="text/javascript"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/version3/bootstrap.switch/ -->
+<script src="/js/bootstrap-switch.js"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="/js/nouislider.min.js" type="text/javascript"></script>
+<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+<script src="/js/bootstrap-datepicker.js" type="text/javascript"></script>
+<!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
+<script src="/js/now-ui-kit.js?v=1.1.0" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // the body of this function is in /js/now-ui-kit.js
+        nowuiKit.initSliders();
+    });
 
-				<div class="row">
-					
-					<div class="card-panel">
+    function scrollToDownload() {
 
-						<div class="row">
+        if ($('.section-download').length != 0) {
+            $("html, body").animate({
+                scrollTop: $('.section-download').offset().top
+            }, 1000);
+        }
+    }
+</script>
 
-							<div class="col s12 m12 l12">
-								<div class="card">
-									<div class="card-stacked">
-										<div class="card-content">
-											<div class="row">
-												<form class="col s12">
-													<div class="row">
-														<div class="input-field col s6">
-															<input placeholder="Placeholder" id="first_name" type="text" class="validate">
-															<label for="first_name">First Name</label>
-														</div>
-														<div class="input-field col s6">
-															<input id="last_name" type="text" class="validate">
-															<label for="last_name">Last Name</label>
-														</div>
-													</div>
-													<div class="row">
-														<div class="input-field col s12">
-															<input id="password" type="password" class="validate">
-															<label for="password">Password</label>
-														</div>
-													</div>
-													<div class="row">
-														<div class="input-field col s12">
-															<input id="email" type="email" class="validate">
-															<label for="email">Email</label>
-														</div>
-													</div>
-													<div class="row">
-														<div class="col s12">
-															This is an inline input field:
-															<div class="input-field inline">
-																<input id="email" type="email" class="validate">
-																<label for="email" data-error="wrong" data-success="right">Email</label>
-															</div>
-														</div>
-													</div>
-												</form>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>	
-
-						</div>
-						
-						<div class="row">
-
-							<div col="col s12 m12 l12">
-
-								<h2 class="header">Categoria Livros</h2>
-
-								<div class="col s12 m6 l6">
-									<div class="card horizontal">
-										<div class="card-image">
-											<img src="https://lorempixel.com/100/190/nature/6">
-										</div>
-										<div class="card-stacked">
-											<div class="card-content">
-												<span class="card-title">Card Title</span>
-												<p>I am a very simple card. I am good at containing small bits of information. adassdsadas dasdsad sadasdadasdas dsda sdasdasd daasdasdasdasd.</p>
-											</div>
-											<div class="card-action">
-												<a href="#">This is a link</a>
-											</div>
-										</div>
-									</div>
-								</div>	
-
-							</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
-
-		<footer class="page-footer footer-iesp">
-			<div class="container">
-				<div class="row">
-					<div class="col l6 s12">
-						<h5 class="white-text">Footer Content</h5>
-						<p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-					</div>
-					<div class="col l4 offset-l2 s12">
-						<h5 class="white-text">Links</h5>
-						<ul>
-							<li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-							<li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-							<li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-							<li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="footer-copyright">
-				<div class="container">
-				© 2014 Copyright Text
-				<a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-				</div>
-			</div>
-		</footer>
-
-
-
-      <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>
-    </body>
-  </html>
-        
+</html>
