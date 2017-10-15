@@ -41,11 +41,18 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                <li class="dropdown">                  
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="material-icons">person</i>
                         <p class="hidden-lg hidden-md">Profile</p>
                     </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#" onclick="event.preventDefault();$('#logoutForm').submit();">Sair</a>
+                            <form class="hidden" id="logoutForm" method="POST" action="/logout">
+                            </form>
+                        </li>
+                    </ul>
                 </li>
             </ul>
             <form class="navbar-form navbar-right" role="search">

@@ -92,18 +92,19 @@
                                 <img src="/img/logo-I-001.png" alt="">
                             </div>
                         </div>
+                        <%if(loginMessage){%><p class="text-warning"><%=loginMessage%></p><%}%>
                         <div class="content">
                             <div class="input-group form-group-no-border input-lg">
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons users_circle-08"></i>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Nome de usuário">
+                                <input type="text" class="form-control" name="username" placeholder="Nome de usuário" required/>
                             </div>
                             <div class="input-group form-group-no-border input-lg">
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons objects_key-25"></i>
                                 </span>
-                                <input type="password" placeholder="Senha" class="form-control" />
+                                <input type="password" placeholder="Senha" name="password" class="form-control" required/>
                             </div>
                         </div>
                         <div class="footer text-center">

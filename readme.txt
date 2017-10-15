@@ -1,3 +1,15 @@
+Dependências utilizadas:
+
+Express: Framework para o nodejs
+Body-Parser: Analisa o conteúdo do request, extrai e o expõe dentro de request.Body
+Consign: Utilizado para importar os modulos dentro de app
+EJS: Motor de visualização que compila o código JS e gera um html
+MYSQL: Utilizado para se conectar e usar o banco
+Express-Session: Habilita o uso de sessão no Express
+Passport: Utilizado para abstrair a authenticação
+Passport-local: Estratégia utilizada pelo passport para authenticar por username e senha
+
+
 Como configurar o projeto:
 
 

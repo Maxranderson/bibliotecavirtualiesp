@@ -1,4 +1,11 @@
 module.exports = `
+CREATE TABLE IF NOT EXISTS users
+(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    username varchar(50) UNIQUE NOT NULL,
+    password text NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS publicacoes
 (
     id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -19,6 +26,6 @@ CREATE TABLE IF NOT EXISTS publicacoes
     referencias text NULL,
     palavras_chaves text NULL,
     resumo_sinopse text NULL
-)
+);
 
 `;

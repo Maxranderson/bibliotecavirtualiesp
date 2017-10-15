@@ -1,0 +1,45 @@
+<%- include('../template/top', {contentTitle:"Usuários", pageSelected:{usuarios:"active"}});%>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="row"> <div class="col-md-12">
+                <!-- TODO -> COLOCAR UMA MENSAGEM AQUI -->
+                <%if(mensagem.erro){%>
+                    <h1><%=mensagem.erro%></h1>
+                <%}%>
+                <%if(mensagem.sucesso){%>
+                    <h1><%=mensagem.sucesso%></h1>
+                <%}%>
+                <!-- FIM -->
+                <div class="card">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">Cadastrar Usuário</h4>
+                        <p class="category">Preencha os dados</p>
+                    </div>
+                    <div class="card-content">
+                        <form action="/admin/usuarios" method="POST">
+                            <div class="row"> 
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Nome de usuário</label>
+                                        <input type="text" class="form-control" name="username" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Senha</label>
+                                        <input type="password" class="form-control" name="password" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary pull-right">Cadastrar</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../template/bottom');%>

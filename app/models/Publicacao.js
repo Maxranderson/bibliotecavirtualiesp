@@ -1,16 +1,16 @@
 module.exports = function(app){
+        var publicacaoDAO = app.dao.PublicacaoDAO;
     
     function Publicacao(){
-        this._publicacaoDAO = new app.dao.PublicacaoDAO();
     }
 
-    Publicacao.prototype.list = function(callback){
-        this._publicacaoDAO.list(callback);
+    Publicacao.prototype.list = function(paginacao, callback){
+        publicacaoDAO.list(paginacao, callback);
     }
 
     Publicacao.prototype.insert = function(publicacao, callback){
         publicacao.ano_publicacao = null;
-        this._publicacaoDAO.insert(publicacao, callback);
+        publicacaoDAO.insert(publicacao, callback);
     }
 
     return Publicacao;

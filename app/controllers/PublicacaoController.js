@@ -2,15 +2,12 @@ module.exports = function (app) {
     
     this.lista = function(req, res){
         var paginacao = {
-            currentPage: 1,
-            pageCount: 5,
+            currentPage: req.query.page || 1,
+            pageCount: 1,
             pageSize: 10,
         }
-        if(req.query.page){
-            paginacao.currentPage = req.query.page;
-        }
         var publicacao = new app.models.Publicacao();
-        publicacao.list(function(erro, results){
+        publicacao.list(paginacao, function(erro, results){
             if(erro){
                 console.log(erro);
                 res.render('admin/publicacao/lista',{paginacao:paginacao,publicacoes:{},erros:erro})

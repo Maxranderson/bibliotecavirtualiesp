@@ -1,20 +1,25 @@
 module.exports = function(app){
 
-    function PublicacaoDAO(){
-        this._connectionConfig = app.factorys.connectionFactory;
-    }
+    var connectionConfig = app.factorys.connectionFactory;
     
-    PublicacaoDAO.prototype.list = function(callback){
-        var connection = this._connectionConfig();
-        connection.query('select * from publicacoes',callback);
+    this.list = function(paginacao, callback){
+        var connection = connectionConfig();
+        connection.query('select count(*) as qt from publicacoes; ', function(erro, count){
+            var connection = connectionConfig();
+            var offset = paginacao.pageSize*(paginacao.currentPage-1);
+            connection.query('select * from publicacoes limit ? offset ?',[paginacao.pageSize, offset],function(err, results){
+                callback(err, results, count[0].qt);
+            });
+            connection.end();
+        });
         connection.end();
     }
     
-    PublicacaoDAO.prototype.insert = function(publicacao, callback){
-        var connection = this._connectionConfig();
+    this.insert = function(publicacao, callback){
+        var connection = connectionConfig();
         connection.query('insert into publicacoes set ?', publicacao, callback);
         connection.end();
     }
     
-    return PublicacaoDAO;
+    return this;
 }
