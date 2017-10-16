@@ -18,21 +18,49 @@ module.exports = function (app) {
     };
 
     this.form = function(req, res){
-        var msgm = {}
-        if(req.session.msgm){
-            msgm = req.session.msgm;
-            req.session.msgm = null;
-        }      
-        res.render('admin/user/form', {mensagem:msgm});
+        var msgm = {};
+        var danger = req.flash('dangerMessage');
+        var success = req.flash('successMessage');
+        if(danger.length) msgm.danger = danger;
+        if(success.length) msgm.success = success;
+        res.render('admin/user/form', {mensagem:msgm, user:{}});
+    };
+
+    this.alteraForm = function(req, res){
+        User.findById(req.params.id, function(err, results){
+            var msgm = {};
+            var user = {};
+            if(err) msgm.danger = err;
+            if(!results.length){
+                msgm.danger = app.locals.variables.mensagem.usuario.naoEncontrado;
+            }else{
+                user = results[0];
+            }
+            res.render('admin/user/form', {mensagem:msgm, user:user});
+
+        });
+    };
+
+    this.alterar = function(req, res){
+        User.update({id: req.body.id, password: req.body.password}, function(err, results){
+            if(err){
+                req.flash('dangerMessage', err);
+            }else{
+                req.flash('successMessage', app.locals.variables.mensagem.usuario.sucessoAlterado);
+            }
+            res.redirect('/admin/usuarios');
+        });
     };
 
     this.cadastra = function(req, res){
         User.create(req.body.username, req.body.password, function(err, results){
             if(err){
-                console.log(err);
+                req.flash('dangerMessage', err);
+            }else{
+                req.flash('successMessage', app.locals.variables.mensagem.usuario.sucesso);
             }
+            res.redirect('/admin/usuarios/cadastrar');
         });
-        res.redirect('/admin/usuarios/cadastrar');
     };
     
     return this;

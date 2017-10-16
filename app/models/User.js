@@ -6,19 +6,14 @@ module.exports = function(app){
         this.username = obj.username;
         this.password = obj.password;
     }
-
-    User.prototype.save = function(){
-        if(this.id){
-            UserDAO.update(this);
-            return;
-        }
-        UserDAO.insert(this, function(err, results){
-            if(err){
-                console.log(err);
-                throw err;
-            }           
-        });
-    }
+    //Método ainda não está completo
+    // User.prototype.save = function(callback){
+    //     if(this.id){
+    //         UserDAO.update(this, callback);
+    //         return;
+    //     }
+    //     UserDAO.insert(this, callback);
+    // }
 
     User.list = function(paginacao, callback){
         UserDAO.list(paginacao, callback);
@@ -38,9 +33,14 @@ module.exports = function(app){
                 var user = {username: username, password: User.gerarHash(password)}
                 UserDAO.insert(user, callback);
             }else{
-                callback("Usuário Já existe", null);
+                callback(app.locals.variables.mensagem.usuario.jaExiste, null);
             }
         });
+    }
+
+    User.update = function(user, callback){
+        user.password = User.gerarHash(user.password);
+        UserDAO.update(user, callback);
     }
 
     User.findById = function(id, callback){

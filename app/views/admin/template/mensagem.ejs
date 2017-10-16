@@ -1,0 +1,52 @@
+<%if(mensagem.info){%>
+<div class="alert alert-info">
+    <div class="container-fluid">
+        <div class="alert-icon">
+            <i class="material-icons">info_outline</i>
+        </div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+        </button>
+        <b>Informação: </b> <%=mensagem.info%>
+    </div>
+</div>
+<%}%>
+<%if(mensagem.success){%>
+<div class="alert alert-success">
+    <div class="container-fluid">
+        <div class="alert-icon">
+            <i class="material-icons">check</i>
+        </div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+        </button>
+        <b>Sucesso: </b> <%=mensagem.success%>
+    </div>
+</div>
+<%}%>
+<%if(mensagem.warning){%>
+<div class="alert alert-warning">
+    <div class="container-fluid">
+        <div class="alert-icon">
+            <i class="material-icons">warning</i>
+        </div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+        </button>
+        <b>Aviso: </b> <%=mensagem.warning%>
+    </div>
+</div>
+<%}%>
+<%if(mensagem.danger){%>
+<div class="alert alert-danger">
+    <div class="container-fluid">
+        <div class="alert-icon">
+            <i class="material-icons">error_outline</i>
+        </div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+        </button>
+        <b>Alerta: </b> <%=mensagem.danger%>
+    </div>
+</div>
+<%}%>

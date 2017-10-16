@@ -11,5 +11,15 @@
     "administrador":{
         "username": "admin",
         "senha": "12345"
+    },
+    "mensagem": {
+        "usuario": {
+            "sucesso": "Usuário cadastrado com sucesso!",
+            "jaExiste": "Usuário já existe!",
+            "sucessoAlterado": "Usuário alterado com sucesso!"
+        },
+        "publicacao": {
+            "sucesso": "Publicação cadastrada com sucesso!"
+        }
     }
 }

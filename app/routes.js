@@ -19,6 +19,8 @@ module.exports = function(app) {
     app.get('/admin', controllers.AdminController.index);
 
     app.get('/admin/usuarios', controllers.UserController.lista);
+    app.get('/admin/usuarios/alterar/:id', controllers.UserController.alteraForm);
+    app.post('/admin/usuarios/alterar', controllers.UserController.alterar);
     app.get('/admin/usuarios/cadastrar', controllers.UserController.form);
     app.post('/admin/usuarios', controllers.UserController.cadastra);
     

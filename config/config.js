@@ -27,7 +27,7 @@ module.exports = function () {
     server.use(cookieParser('gatinho feliz'));
 
     //Configurando o passport
-    server.use(session({secret: 'sssshhhh', resave:false, saveUninitialized: false, cookie: {maxAge:60000}}));
+    server.use(session({secret: 'sssshhhh', resave:false, saveUninitialized: false}));
     server.use(passport.initialize());
     server.use(passport.session());
     server.use(flash());

@@ -21,9 +21,9 @@ module.exports = function(app){
             connection.end();
         }
 
-        this.update = function(user){
+        this.update = function(user, callback){
             var connection = connectionConfig();
-            connection.query('update users set password= ? where id = ?', [user.password, user.id]);
+            connection.query('update users set password= ? where id = ?', [user.password, user.id], callback);
             connection.end();
         }
 

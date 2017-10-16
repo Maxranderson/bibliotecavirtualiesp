@@ -16,12 +16,20 @@
                             <thead class="text-warning">
                                 <th>ID</th>
                                 <th>Nome de usuário</th>
+                                <th>Ações</th>
                             </thead>
                             <tbody>
                                 <%for(var i = 0; i<usuarios.length;i++){%>
                                 <tr>
                                     <td><%=usuarios[i].id%></td>
                                     <td><%=usuarios[i].username%></td>
+                                    <td class="td-actions text-right">
+                                        <a class="btn btn-primary btn-simple" href="/admin/usuarios/alterar/<%=usuarios[i].id%>"><i class="material-icons">create</i></a>
+                                        <form action="/admin/usuarios/deletar" method="POST">
+                                            <input type="hidden" name="id" value="<%=usuarios[i].id%>">
+                                            <button class="btn btn-danger btn-simple"><i class="material-icons">delete_forever</i></button>
+                                        </form>
+                                    </td>
                                 </tr> 
                                 <%}%>
                             </tbody>

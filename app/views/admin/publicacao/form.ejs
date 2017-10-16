@@ -5,12 +5,7 @@
         <div class="row">
             <div class="row"> <div class="col-md-12">
                 <!-- TODO -> COLOCAR UMA MENSAGEM AQUI -->
-                <%if(mensagem.erro){%>
-                    <h1><%=mensagem.erro%></h1>
-                <%}%>
-                <%if(mensagem.sucesso){%>
-                    <h1><%=mensagem.sucesso%></h1>
-                <%}%>
+                <%- include('../template/mensagem', {mensagem: mensagem});%>
                 <!-- FIM -->
                 <div class="card">
                     <div class="card-header" data-background-color="red">
@@ -38,9 +33,24 @@
                             <div class="row"> 
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Organizador</label>
-                                        <input type="text" class="form-control" name="organizador">
+                                        <label class="control-label">Tipo de publicação*</label>
+                                        <input type="text" class="form-control" name="tipo_publicacao" required>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group is-empty is-fileinput">
+                                        <input type="file" id="inputFile4">
+                                        <div class="input-group">
+                                            <input type="text" readonly="" class="form-control" placeholder="Selecione o arquivo*" required>
+                                            <span class="input-group-btn input-group-sm">
+                                                <button type="button" class="btn btn-fab btn-fab-mini">
+                                                <i class="material-icons">attach_file</i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div> 
                                 </div>
                             </div>
                             <div class="row"> 
@@ -66,16 +76,6 @@
                                         <input type="text" class="form-control" name="numero_edicao">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row"> 
-                                <div class="col-md-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Tipo de publicação*</label>
-                                        <input type="text" class="form-control" name="tipo_publicacao" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row"> 
                             </div>
                             <div class="row"> 
                                 <div class="col-md-2">
@@ -145,80 +145,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="row">
-                                <div class="col-md-5">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Company (disabled)</label>
-                                        <input type="text" class="form-control" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Username</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Email address</label>
-                                        <input type="email" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Fist Name</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Last Name</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="row"> <div class="col-md-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Adress</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">City</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Country</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Postal Code</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="row"> <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>About Me</label>
-                                        <div class="form-group label-floating">
-                                            <label class="control-label"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                                            <textarea class="form-control" rows="5"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                             <button type="submit" class="btn btn-primary pull-right">Cadastrar</button>
+                            <a href="/admin/publicacoes" class="btn btn-danger pull-right">Voltar</a>
                             <div class="clearfix"></div>
                         </form>
                     </div>

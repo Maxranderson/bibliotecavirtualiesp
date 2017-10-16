@@ -18,10 +18,10 @@ module.exports = function (app) {
 
     this.form = function(req, res){
         var msgm = {}
-        if(req.session.msgm){
-            msgm = req.session.msgm;
-            req.session.msgm = null;
-        }      
+        var danger = req.flash('dangerMessage');
+        var success = req.flash('successMessage');
+        if(danger.length) msgm.danger = danger;
+        if(success.length) msgm.success = success;     
         res.render('admin/publicacao/form', {mensagem:msgm});
     };
 
