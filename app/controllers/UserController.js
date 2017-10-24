@@ -6,14 +6,21 @@ module.exports = function (app) {
             currentPage: req.query.page || 1,
             pageCount: 1,
             pageSize: 10,
-        }
+        };
+
+        var msgm = {};
+        var danger = req.flash('dangerMessage');
+        var success = req.flash('successMessage');
+        if(danger.length) msgm.danger = danger;
+        if(success.length) msgm.success = success;
+
         User.list(paginacao,function(erro, results, count){
             if(erro){
                 console.log(erro);
-                res.render('admin/user/lista',{paginacao:paginacao,usuarios:{},erros:erro})
+                res.render('admin/user/lista',{paginacao:paginacao,usuarios:{},mensagem:{danger: erro}});
             }
             paginacao.pageCount = Math.ceil(count/paginacao.pageSize);
-            res.render('admin/user/lista',{paginacao:paginacao,usuarios:results,erros:{}});
+            res.render('admin/user/lista',{paginacao:paginacao,usuarios:results,mensagem:msgm});
         });
     };
 
@@ -51,6 +58,17 @@ module.exports = function (app) {
             res.redirect('/admin/usuarios');
         });
     };
+
+    this.deletar = function(req, res){
+        User.delete({id: req.body.id}, function(err, results){
+            if(err){
+                req.flash('dangerMessage', err);
+            }else{
+                req.flash('successMessage', app.locals.variables.mensagem.usuario.sucessoDeletado);
+            }
+            res.redirect('/admin/usuarios');
+        });
+    }
 
     this.cadastra = function(req, res){
         User.create(req.body.username, req.body.password, function(err, results){

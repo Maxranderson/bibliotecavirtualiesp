@@ -23,6 +23,7 @@ module.exports = function(app) {
     app.post('/admin/usuarios/alterar', controllers.UserController.alterar);
     app.get('/admin/usuarios/cadastrar', controllers.UserController.form);
     app.post('/admin/usuarios', controllers.UserController.cadastra);
+    app.post('/admin/usuarios/deletar', controllers.UserController.deletar);
     
     app.get('/admin/publicacoes', controllers.PublicacaoController.lista);
     app.get('/admin/publicacoes/cadastrar', controllers.PublicacaoController.form);

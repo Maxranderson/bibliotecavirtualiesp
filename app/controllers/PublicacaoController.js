@@ -1,18 +1,24 @@
 module.exports = function (app) {
-    
+
+    var Publicacao = app.models.Publicacao;
+
     this.lista = function(req, res){
         var paginacao = {
             currentPage: req.query.page || 1,
             pageCount: 1,
             pageSize: 10,
         }
-        var publicacao = new app.models.Publicacao();
-        publicacao.list(paginacao, function(erro, results){
+        var msgm = {}
+        var danger = req.flash('dangerMessage');
+        var success = req.flash('successMessage');
+        if(danger.length) msgm.danger = danger;
+        if(success.length) msgm.success = success;  
+        Publicacao.list(paginacao, function(erro, results){
             if(erro){
                 console.log(erro);
-                res.render('admin/publicacao/lista',{paginacao:paginacao,publicacoes:{},erros:erro})
+                res.render('admin/publicacao/lista',{paginacao:paginacao,publicacoes:{},mensagem:{danger:erro}})
             }
-            res.render('admin/publicacao/lista',{paginacao:paginacao,publicacoes:results,erros:{}});
+            res.render('admin/publicacao/lista',{paginacao:paginacao,publicacoes:results,mensagem:msgm});
         });
     };
 
@@ -26,17 +32,24 @@ module.exports = function (app) {
     };
 
     this.cadastra = function(req, res){
-        var publicacao = new app.models.Publicacao();
-        publicacao.insert(req.body, function(erro, result, fields){
-            req.session.msgm = {};
+        if(!req.body.ano_publicacao.length) req.body.ano_publicacao = null;
+        Publicacao.insert(req.body, function(erro, result){
             if(erro){
                 console.log(erro);
-                req.session.msgm.erro = erro.msg;
+                req.flash('dangerMessage', erro);
             }else{
-                req.session.msgm.sucesso = "Publicação cadastrada com sucesso!";
+                req.flash('successMessage',app.locals.variables.mensagem.publicacao.sucesso);
             }
             res.redirect('/admin/publicacoes/cadastrar');
         });
+    };
+
+    this.alterar = function(req, res){
+
+    };
+
+    this.deletar = function(req, res){
+
     };
     
     return this;

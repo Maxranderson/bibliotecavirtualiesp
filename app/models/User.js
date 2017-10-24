@@ -38,6 +38,10 @@ module.exports = function(app){
         });
     }
 
+    User.delete = function(user, callback){
+        UserDAO.delete(user, callback);
+    }
+
     User.update = function(user, callback){
         user.password = User.gerarHash(user.password);
         UserDAO.update(user, callback);

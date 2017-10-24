@@ -16,7 +16,8 @@
         "usuario": {
             "sucesso": "Usuário cadastrado com sucesso!",
             "jaExiste": "Usuário já existe!",
-            "sucessoAlterado": "Usuário alterado com sucesso!"
+            "sucessoAlterado": "Usuário alterado com sucesso!",
+            "sucessoDeletado": "Usuário deletado com sucesso!"
         },
         "publicacao": {
             "sucesso": "Publicação cadastrada com sucesso!"
