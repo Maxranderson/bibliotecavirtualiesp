@@ -8,7 +8,7 @@
         }
     },
     "porta": 3000,
-    "administrador":{
+    "administrador": {
         "username": "admin",
         "senha": "12345"
     },

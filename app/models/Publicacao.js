@@ -1,4 +1,5 @@
 module.exports = function (app) {
+    
     var publicacaoDAO = app.dao.PublicacaoDAO;
 
     function Publicacao() {
@@ -16,7 +17,7 @@ module.exports = function (app) {
 
     }
 
-    Publicacao.delete = function (publicacao, callback) {
+    Publicacao.delete = function (id, callback) {
 
     }
 

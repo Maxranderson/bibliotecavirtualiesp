@@ -262,3 +262,16 @@ function debounce(func, wait, immediate) {
         if (immediate && !timeout) func.apply(context, args);
     };
 };
+
+//correção do scroll do modal
+$('.modal').on('shown.bs.modal', function (e) {
+    console.log('shown');
+    // $('html').removeClass('perfect-scrollbar-on');
+    // $('html').addClass('perfect-scrollbar-off');
+    $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+}).on('hidden.bs.modal', function (e){
+    console.log('hidden');
+    // $('html').removeClass('perfect-scrollbar-off');
+    // $('html').addClass('perfect-scrollbar-on')
+    $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+});
