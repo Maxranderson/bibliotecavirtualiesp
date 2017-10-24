@@ -20,7 +20,9 @@
             "sucessoDeletado": "Usuário deletado com sucesso!"
         },
         "publicacao": {
-            "sucesso": "Publicação cadastrada com sucesso!"
+            "sucesso": "Publicação cadastrada com sucesso!",
+            "sucessoAlterado": "Publicação alterada com sucesso!",
+            "sucessoDeletado": "Publicação deletada com sucesso!"
         }
     }
 }

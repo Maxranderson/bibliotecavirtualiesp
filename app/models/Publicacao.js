@@ -13,11 +13,13 @@ module.exports = function (app) {
         publicacaoDAO.insert(publicacao, callback);
     }
 
+    //TODO: implementar o método
     Publicacao.update = function (publicacao, callback) {
 
     }
 
-    Publicacao.delete = function (id, callback) {
+    //TODO: implementar o método
+    Publicacao.delete = function (publicacao, callback) {
 
     }
 

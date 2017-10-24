@@ -19,14 +19,21 @@ module.exports = function(app) {
     app.get('/admin', controllers.AdminController.index);
 
     app.get('/admin/usuarios', controllers.UserController.lista);
-    app.get('/admin/usuarios/alterar/:id', controllers.UserController.alteraForm);
-    app.post('/admin/usuarios/alterar', controllers.UserController.alterar);
     app.get('/admin/usuarios/cadastrar', controllers.UserController.form);
     app.post('/admin/usuarios', controllers.UserController.cadastra);
+    app.get('/admin/usuarios/alterar/:id', controllers.UserController.alteraForm);
+    app.post('/admin/usuarios/alterar', controllers.UserController.alterar);
     app.post('/admin/usuarios/deletar', controllers.UserController.deletar);
     
     app.get('/admin/publicacoes', controllers.PublicacaoController.lista);
     app.get('/admin/publicacoes/cadastrar', controllers.PublicacaoController.form);
     app.post('/admin/publicacoes', controllers.PublicacaoController.cadastra);
+    // app.post('/admin/publicacoes/deletar', controllers.PublicacaoController.deletar); //TODO: Finalizar o método e descomentar a rota
     //Fim das rotas de admin
+
+
+    //Rotas de erro
+    app.use(function(req,res,next){
+        res.status(404).render('404');
+    });
 }

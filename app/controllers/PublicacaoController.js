@@ -47,14 +47,25 @@ module.exports = function (app) {
             }
             res.redirect('/admin/publicacoes/cadastrar');
         });
-        
+
     };
 
+    //TODO: Implementar o método
     this.alterar = function (req, res) {
 
     };
 
+    //TODO: Finalizar o método
     this.deletar = function (req, res) {
+
+        // Publicacao.delete({id: req.body.id}, function(err, results){
+        //     if(err){
+        //         req.flash('dangerMessage', err);
+        //     }else{
+        //         req.flash('successMessage', app.locals.variables.mensagem.publicacao.sucessoDeletado);
+        //     }
+        //     res.redirect('/admin/publicacoes');
+        // });
 
     };
 
