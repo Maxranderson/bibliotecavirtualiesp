@@ -31,7 +31,7 @@ module.exports = function (app) {
         var success = req.flash('successMessage');
         if (danger.length) msgm.danger = danger;
         if (success.length) msgm.success = success;
-        res.render('admin/publicacao/form', { mensagem: msgm });
+        res.render('admin/publicacao/form', { mensagem: msgm, publicacao:{} });
 
     };
 
@@ -50,22 +50,46 @@ module.exports = function (app) {
 
     };
 
-    //TODO: Implementar o método
+    this.alteraForm = function(req, res){
+        Publicacao.findById(req.params.id, function(err, results){
+            var msgm = {};
+            var publicacao = {};
+            if(err) msgm.danger = err;
+            if(!results.length){
+                msgm.danger = app.locals.variables.mensagem.publicacao.naoEncontrado;
+            }else{
+                publicacao = results[0];
+            }
+            res.render('admin/publicacao/form', {mensagem:msgm, publicacao:publicacao});
+
+        });
+    };
+
+    //TODO: testar o método
     this.alterar = function (req, res) {
+
+        Publicacao.update(req.body, function(err, results){
+            if(err){
+                req.flash('dangerMessage', err);
+            }else{
+                req.flash('successMessage', app.locals.variables.mensagem.publicacao.sucessoAlterado);
+            }
+            res.redirect('/admin/publicacoes');
+        });
 
     };
 
-    //TODO: Finalizar o método
+    //TODO: testar o método
     this.deletar = function (req, res) {
 
-        // Publicacao.delete({id: req.body.id}, function(err, results){
-        //     if(err){
-        //         req.flash('dangerMessage', err);
-        //     }else{
-        //         req.flash('successMessage', app.locals.variables.mensagem.publicacao.sucessoDeletado);
-        //     }
-        //     res.redirect('/admin/publicacoes');
-        // });
+        Publicacao.delete({id: req.body.id}, function(err, results){
+            if(err){
+                req.flash('dangerMessage', err);
+            }else{
+                req.flash('successMessage', app.locals.variables.mensagem.publicacao.sucessoDeletado);
+            }
+            res.redirect('/admin/publicacoes');
+        });
 
     };
 

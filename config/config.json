@@ -17,12 +17,14 @@
             "sucesso": "Usuário cadastrado com sucesso!",
             "jaExiste": "Usuário já existe!",
             "sucessoAlterado": "Usuário alterado com sucesso!",
-            "sucessoDeletado": "Usuário deletado com sucesso!"
+            "sucessoDeletado": "Usuário deletado com sucesso!",
+            "naoEncontrado": "Usuário não encontrado!"
         },
         "publicacao": {
             "sucesso": "Publicação cadastrada com sucesso!",
             "sucessoAlterado": "Publicação alterada com sucesso!",
-            "sucessoDeletado": "Publicação deletada com sucesso!"
+            "sucessoDeletado": "Publicação deletada com sucesso!",
+            "naoEncontrado": "Publicação não encontrada!"
         }
     }
 }

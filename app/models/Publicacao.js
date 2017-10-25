@@ -1,25 +1,35 @@
 module.exports = function (app) {
-    
-    var publicacaoDAO = app.dao.PublicacaoDAO;
+
+    var PublicacaoDAO = app.dao.PublicacaoDAO;
 
     function Publicacao() {
     }
 
     Publicacao.list = function (paginacao, callback) {
-        publicacaoDAO.list(paginacao, callback);
+        PublicacaoDAO.list(paginacao, callback);
     }
 
     Publicacao.insert = function (publicacao, callback) {
-        publicacaoDAO.insert(publicacao, callback);
+        PublicacaoDAO.insert(publicacao, callback);
     }
 
-    //TODO: implementar o método
+    Publicacao.findById = function (id, callback) {
+
+        PublicacaoDAO.findById(id, callback);
+        
+    }
+
+    //TODO: testar o método
     Publicacao.update = function (publicacao, callback) {
 
+        PublicacaoDAO.update(publicacao, callback);
+
     }
 
-    //TODO: implementar o método
+    //TODO: testar o método
     Publicacao.delete = function (publicacao, callback) {
+
+        PublicacaoDAO.delete(publicacao, callback);
 
     }
 

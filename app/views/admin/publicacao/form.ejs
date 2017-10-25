@@ -9,16 +9,17 @@
                 <!-- FIM -->
                 <div class="card">
                     <div class="card-header" data-background-color="red">
-                        <h4 class="title">Cadastrar Publicação</h4>
+                        <h4 class="title"><%=publicacao.id ? "Alterar":"Cadastrar"%> Publicação</h4>
                         <p class="category">Preencha os dados</p>
                     </div>
                     <div class="card-content">
-                        <form action="/admin/publicacoes" method="POST">
+                        <form action="/admin/publicacoes<%=publicacao.id ? '/alterar/':''%>" method="POST">
+                            <%if(publicacao.id){%><input name="id" type="hidden" value="<%=publicacao.id%>"><%}%>
                             <div class="row"> 
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Título*</label>
-                                        <input type="text" class="form-control" name="titulo" required>
+                                        <input type="text" class="form-control" name="titulo" value="<%=publicacao.titulo%>" required>
                                     </div>
                                 </div>
                             </div>
@@ -26,7 +27,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Autor*</label>
-                                        <input type="text" class="form-control" name="autor" required>
+                                        <input type="text" class="form-control" name="autor" value="<%=publicacao.autor%>" required>
                                     </div>
                                 </div>
                             </div>
@@ -34,10 +35,11 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Tipo de publicação*</label>
-                                        <input type="text" class="form-control" name="tipo_publicacao" required>
+                                        <input type="text" class="form-control" name="tipo_publicacao" value="<%=publicacao.tipo_publicacao%>" required>
                                     </div>
                                 </div>
                             </div>
+                            <%if(!publicacao.id){%>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group is-empty is-fileinput">
@@ -53,11 +55,12 @@
                                     </div> 
                                 </div>
                             </div>
+                            <%}%>
                             <div class="row"> 
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Curso</label>
-                                        <input type="text" class="form-control" name="curso">
+                                        <input type="text" class="form-control" name="curso" value="<%=publicacao.curso%>">
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +68,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Editora</label>
-                                        <input type="text" class="form-control" name="editora">
+                                        <input type="text" class="form-control" name="editora" value="<%=publicacao.editora%>">
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +76,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Número de edição</label>
-                                        <input type="text" class="form-control" name="numero_edicao">
+                                        <input type="text" class="form-control" name="numero_edicao" value="<%=publicacao.numero_edicao%>">
                                     </div>
                                 </div>
                             </div>
@@ -81,25 +84,25 @@
                                 <div class="col-md-2">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Idioma</label>
-                                        <input type="text" class="form-control" name="idioma">
+                                        <input type="text" class="form-control" name="idioma" value="<%=publicacao.idioma%>">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group label-floating">
                                         <label class="control-label">País da publicação</label>
-                                        <input type="text" class="form-control" name="pais_publicacao">
+                                        <input type="text" class="form-control" name="pais_publicacao" value="<%=publicacao.pais_publicacao%>">
                                     </div>
                                 </div>
                                 <div class="col-md-1">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Ano</label>
-                                        <input type="text" class="form-control" name="ano_publicacao">
+                                        <input type="text" class="form-control" name="ano_publicacao" value="<%=publicacao.ano_publicacao%>">
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Instituição</label>
-                                        <input type="text" class="form-control" name="instituicao">
+                                        <input type="text" class="form-control" name="instituicao" value="<%=publicacao.instituicao%>">
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +110,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Sumário</label>
-                                        <input type="text" class="form-control" name="sumario">
+                                        <input type="text" class="form-control" name="sumario" value="<%=publicacao.sumario%>">
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +118,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Referências</label>
-                                        <input type="text" class="form-control" name="referencias">
+                                        <input type="text" class="form-control" name="referencias" value="<%=publicacao.referencias%>">
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +126,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Palavras-chave</label>
-                                        <input type="text" class="form-control" name="palavras_chaves">
+                                        <input type="text" class="form-control" name="palavras_chaves" value="<%=publicacao.palavras_chaves%>">
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +135,7 @@
                                     <div class="form-group">
                                         <label>Resumo/Sinopse</label>
                                         <div class="form-group label-floating">
-                                            <textarea class="form-control" rows="5" name="resumo_sinopse"></textarea>
+                                            <textarea class="form-control" rows="5" name="resumo_sinopse" value="<%=publicacao.resumo_sinopse%>"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -141,11 +144,11 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">ISBN/ISSN</label>
-                                        <input type="text" class="form-control" name="isbn_issn">
+                                        <input type="text" class="form-control" name="isbn_issn" value="<%=publicacao.isbn_issn%>">
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary pull-right">Cadastrar</button>
+                            <button type="submit" class="btn btn-primary pull-right"><%=publicacao.id ? "Alterar":"Cadastrar"%></button>
                             <a href="/admin/publicacoes" class="btn btn-danger pull-right">Voltar</a>
                             <div class="clearfix"></div>
                         </form>
