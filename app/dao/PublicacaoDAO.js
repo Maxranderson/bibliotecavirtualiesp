@@ -37,10 +37,13 @@ module.exports = function (app) {
         delete publicacao.id;
         delete publicacao.arquivo;
 
-        var columnsQuery = Object.keys(publicacao).join(' = ?,');
-        var values = Object.values(publicacao);
+        var keys = Object.keys(publicacao)
+        var columnsQuery = keys.join(' = ?, ') + ' = ?';
+        var values = [];
+        for (var i = 0; i < keys.length; i++) {
+            values.push(publicacao[keys[i]]);
+        }
         values.push(id);
-
 
         var connection = connectionConfig();
         connection.query('update publicacoes set ' + columnsQuery + ' where id = ?', values, callback);
@@ -52,6 +55,14 @@ module.exports = function (app) {
 
         var connection = connectionConfig();
         connection.query('delete from publicacoes where id = ?', [publicacao.id], callback);
+        connection.end();
+
+    }
+
+    this.findById = function (publicacao, callback) {
+
+        var connection = connectionConfig();
+        connection.query('select * from publicacoes where id = ?', [publicacao.id], callback);
         connection.end();
 
     }

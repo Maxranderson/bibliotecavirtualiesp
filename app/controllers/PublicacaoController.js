@@ -37,7 +37,10 @@ module.exports = function (app) {
 
     this.cadastra = function (req, res) {
 
-        if (!req.body.ano_publicacao.length) req.body.ano_publicacao = null;
+        var publicacao = req.body;
+        var keys = Object.keys(publicacao);
+        for(var i = 0;i<keys.length;i++) if(!publicacao[keys[i]]) delete publicacao[keys[i]];
+
         Publicacao.insert(req.body, function (erro, result) {
             if (erro) {
                 console.log(erro);
@@ -51,7 +54,7 @@ module.exports = function (app) {
     };
 
     this.alteraForm = function(req, res){
-        Publicacao.findById(req.params.id, function(err, results){
+        Publicacao.findById({id: req.params.id}, function(err, results){
             var msgm = {};
             var publicacao = {};
             if(err) msgm.danger = err;
@@ -67,10 +70,13 @@ module.exports = function (app) {
 
     //TODO: testar o método
     this.alterar = function (req, res) {
-
+        var publicacao = req.body;
+        var keys = Object.keys(publicacao);
+        for(var i = 0;i<keys.length;i++) if(!publicacao[keys[i]]) delete publicacao[keys[i]];
+        
         Publicacao.update(req.body, function(err, results){
             if(err){
-                req.flash('dangerMessage', err);
+                req.flash('dangerMessage', err.message);
             }else{
                 req.flash('successMessage', app.locals.variables.mensagem.publicacao.sucessoAlterado);
             }
