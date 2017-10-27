@@ -30,7 +30,7 @@ module.exports = function(app) {
     app.post('/admin/publicacoes', controllers.PublicacaoController.cadastra);
     app.get('/admin/publicacoes/alterar/:id', controllers.PublicacaoController.alteraForm);
     app.post('/admin/publicacoes/alterar', controllers.PublicacaoController.alterar);
-    app.post('/admin/publicacoes/deletar', controllers.PublicacaoController.deletar); //TODO: Finalizar o método e descomentar a rota
+    app.post('/admin/publicacoes/deletar', controllers.PublicacaoController.deletar);
     //Fim das rotas de admin
 
 

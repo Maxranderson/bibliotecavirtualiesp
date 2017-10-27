@@ -68,12 +68,11 @@ module.exports = function (app) {
         });
     };
 
-    //TODO: testar o método
     this.alterar = function (req, res) {
         var publicacao = req.body;
         var keys = Object.keys(publicacao);
         for(var i = 0;i<keys.length;i++) if(!publicacao[keys[i]]) delete publicacao[keys[i]];
-        
+
         Publicacao.update(req.body, function(err, results){
             if(err){
                 req.flash('dangerMessage', err.message);
@@ -85,7 +84,6 @@ module.exports = function (app) {
 
     };
 
-    //TODO: testar o método
     this.deletar = function (req, res) {
 
         Publicacao.delete({id: req.body.id}, function(err, results){

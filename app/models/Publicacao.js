@@ -19,14 +19,12 @@ module.exports = function (app) {
         
     }
 
-    //TODO: testar o método
     Publicacao.update = function (publicacao, callback) {
 
         PublicacaoDAO.update(publicacao, callback);
 
     }
 
-    //TODO: testar o método
     Publicacao.delete = function (publicacao, callback) {
 
         PublicacaoDAO.delete(publicacao, callback);
