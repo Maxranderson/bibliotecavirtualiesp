@@ -26,5 +26,6 @@
             "sucessoDeletado": "Publicação deletada com sucesso!",
             "naoEncontrado": "Publicação não encontrada!"
         }
-    }
+    },
+    "downloadPath": "files/"
 }

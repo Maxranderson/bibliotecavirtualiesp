@@ -19,6 +19,7 @@
                                 <th>Título</th>
                                 <th>Autor</th>
                                 <th>Tipo</th>
+                                <th>Arquivo</th>
                                 <th>Ações</th>
                             </thead>
                             <tbody>
@@ -28,6 +29,7 @@
                                     <td><%=publicacoes[i].titulo%></td>
                                     <td><%=publicacoes[i].autor%></td>
                                     <td><%=publicacoes[i].tipo_publicacao%></td>
+                                    <td><a href="/<%=downloadPath+publicacoes[i].arquivo%>"><i class="material-icons">insert_drive_file</i></a></td>
                                     <td class="td-actions text-right">
                                         <button class="btn btn-primary btn-simple" title="Detalhes" data-toggle="modal" data-target="#modalPub<%=publicacoes[i].id%>"><i class="material-icons">view_headline</i></button>
                                         <a class="btn btn-primary btn-simple" href="/admin/publicacoes/alterar/<%=publicacoes[i].id%>" title="Alterar"><i class="material-icons">create</i></a>

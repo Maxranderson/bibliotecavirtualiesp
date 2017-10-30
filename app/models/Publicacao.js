@@ -31,5 +31,9 @@ module.exports = function (app) {
 
     }
 
+    Publicacao.lastFour = function(callback){
+        PublicacaoDAO.lastFour(callback);
+    }
+
     return Publicacao;
 }

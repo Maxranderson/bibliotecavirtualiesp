@@ -105,10 +105,11 @@
                 <div class="container">
                     <h3 class="title">Últimas públicações</h3>
                     <div class="row">
+                        <%for(var i = 0; i<publicacoes.length; i++){%>
                         <div class="col-md-6">
                             <div class="row card-publicacao">
                                 <div class="col-4 col-md-4 card-image">
-                                    <img src="/img/sidebar-4.jpg" alt="">
+                                    <img src="<%=publicacoes[i].capa ? /img/+publicacoes[i].capa :'/img/sidebar-4.jpg'%>" alt="">
                                 </div>
                                 <div class="col-8 col-md-8 card-content">
                                     <div class="card">
@@ -116,23 +117,25 @@
                                             <!-- Tab panes -->
                                             <div class="tab-content text-justify">
                                                 <div class="tab-pane active" id="home" role="tabpanel">
-                                                    <h6>EDUCOMUNICAÇÃO: TECENDO NOVAS REDES DE CONHECIMENTO E ROMPENDO PARADIGMAS NA ESCOLA MUNICIPAL VEREADOR JOSÉ GRIMAUDO TAVARES, A POLÍTICA NACIONAL DE ASSISTÊNCIA TÉCNICA...</h6>
-                                                    <p><strong>Autor: </strong>Jan Edson Rodrigues Leite; Hercilio de Medeiros Sousa; Estevão Domingos Soares de Oliveira; Maxranderson Rodrigues Araújo</p>
+                                                    <h6><%=publicacoes[i].titulo%></h6>
+                                                    <p><strong>Autor: </strong><%=publicacoes[i].autor%></p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <a href="#" class="card-link" style="position: absolute; bottom: 7px; right: 20px;">Leia mais...</a>
+                                        <a href="/files/publicacoes/<%=publicacoes[i].arquivo%>" class="card-link" style="position: absolute; bottom: 7px; right: 110px;">Donwload</a>
+                                        <a href="#" class="card-link" style="position: absolute; bottom: 7px; right: 20px;" title="Detalhes" data-toggle="modal" data-target="#modalPub<%=publicacoes[i].id%>">Leia mais...</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+                        <%- include('./publicacao/modal.ejs', { publicacao: publicacoes[i] });%>
+                        <%}%>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Sart Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="pesquisaAvancada" tabindex="-1" role="dialog" aria-labelledby="pesquisaAvancada" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header justify-content-center">
@@ -153,60 +156,10 @@
             </div>
         </div>
         <!--  End Modal -->
-        <!-- Mini Modal -->
-        <div class="modal fade modal-mini modal-primary" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header justify-content-center">
-                        <div class="modal-profile">
-                            <i class="now-ui-icons users_circle-08"></i>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <p>Always have an access to your profile</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-link btn-neutral">Back</button>
-                        <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--  End Modal -->
+        
         <footer class="footer" data-background-color="black">
             <div class="container">
-                <nav>
-                    <ul>
-                        <li>
-                            <a href="https://www.creative-tim.com">
-                                Creative Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://presentation.creative-tim.com">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://blog.creative-tim.com">
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
-                                MIT License
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="copyright">
-                    &copy;
-                    <script>
-                        document.write(new Date().getFullYear())
-                    </script>, Designed by
-                    <a href="http://www.invisionapp.com" target="_blank">Invision</a>. Coded by
-                    <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
-                </div>
+                
             </div>
         </footer>
     </div>

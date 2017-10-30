@@ -18,7 +18,7 @@ module.exports = function(app){
         if(req.isAuthenticated()){
             return next();
         }
-        req.flash('message','Não está logado!');
+        req.flash('loginMessage','Não está logado!');
         res.redirect('/login');
     }
 

@@ -53,13 +53,14 @@ module.exports = function(app){
                 var user = new User(results[0]);
                 results[0] = user;        
                 callback(err, results);
+                return;
             }
+            callback(err, results);
         });
     }
 
     User.findByUsername = function(username, callback){
         UserDAO.findByUsername(username, function(err, results){
-            if(err) callback(err, results);
             if(results[0]){
                 var user = new User(results[0]);
                 results[0] = user;     

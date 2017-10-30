@@ -36,24 +36,24 @@
                             </tbody>
                         </table>
                         <nav class="text-center" aria-label="Page navigation">
-                                <ul class="pagination">
-                                  <li class="page-item">
+                            <ul class="pagination">
+                                <li class="page-item">
                                     <a class="page-link" href="?page=<%=paginacao.currentPage==1?1:paginacao.currentPage-1%>" aria-label="Previous">
-                                      <span aria-hidden="true">&laquo;</span>
-                                      <span class="sr-only">Previous</span>
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
                                     </a>
-                                  </li>
-                                  <%for(var i = 1; i<=paginacao.pageCount;i++){%>
-                                  <li class="page-item <%= i==paginacao.currentPage?"active":""%>"><a class="page-link" href="?page=<%=i%>"><%=i%></a></li>
-                                  <%}%>
-                                  <li class="page-item">
+                                </li>
+                                <%for(var i = 1; i<=paginacao.pageCount;i++){%>
+                                <li class="page-item <%= i==paginacao.currentPage?"active":""%>"><a class="page-link" href="?page=<%=i%>"><%=i%></a></li>
+                                <%}%>
+                                <li class="page-item">
                                     <a class="page-link" href="?page=<%=paginacao.currentPage==paginacao.pageCount?paginacao.currentPage:(++paginacao.currentPage)%>" aria-label="Next">
-                                      <span aria-hidden="true">&raquo;</span>
-                                      <span class="sr-only">Next</span>
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
                                     </a>
-                                  </li>
-                                </ul>
-                              </nav>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

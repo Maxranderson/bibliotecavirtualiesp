@@ -67,5 +67,11 @@ module.exports = function (app) {
 
     }
 
+    this.lastFour = function(callback){
+        var connection = connectionConfig();
+        connection.query('select * from publicacoes order by id desc limit 4;', callback);
+        connection.end();
+    }
+
     return this;
 }

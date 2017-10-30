@@ -13,13 +13,13 @@
                         <p class="category">Preencha os dados</p>
                     </div>
                     <div class="card-content">
-                        <form action="/admin/publicacoes<%=publicacao.id ? '/alterar/':''%>" method="POST">
+                        <form action="/admin/publicacoes<%=publicacao.id ? '/alterar/':''%>" enctype="multipart/form-data" method="POST">
                             <%if(publicacao.id){%><input name="id" type="hidden" value="<%=publicacao.id%>"><%}%>
                             <div class="row"> 
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Título*</label>
-                                        <input type="text" class="form-control" name="titulo" value="<%=publicacao.titulo%>" required>
+                                        <input type="text" class="form-control" name="titulo" value="<%=publicacao.titulo%>" autofocus required>
                                     </div>
                                 </div>
                             </div>
@@ -31,6 +31,36 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group is-empty is-fileinput">
+                                        <input type="file" id="inputFile4" name="arquivo" <%if(!publicacao.id){%>required<%}%>>
+                                        <div class="input-group">
+                                            <input type="text" readonly="" class="form-control" tabindex="-1" placeholder="Selecione o arquivo*">
+                                            <span class="input-group-btn input-group-sm">
+                                                <button type="button" class="btn btn-fab btn-fab-mini" tabindex="-1">
+                                                <i class="material-icons">attach_file</i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group is-empty is-fileinput">
+                                        <input type="file" id="inputFile4" name="capa">
+                                        <div class="input-group">
+                                            <input type="text" readonly="" class="form-control" tabindex="-1" placeholder="Selecione a imagem da capa*">
+                                            <span class="input-group-btn input-group-sm">
+                                                <button type="button" class="btn btn-fab btn-fab-mini" tabindex="-1">
+                                                <i class="material-icons">attach_file</i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
                             <div class="row"> 
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
@@ -39,112 +69,99 @@
                                     </div>
                                 </div>
                             </div>
-                            <%if(!publicacao.id){%>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group is-empty is-fileinput">
-                                        <input type="file" id="inputFile4" required>
-                                        <div class="input-group">
-                                            <input type="text" readonly="" class="form-control" placeholder="Selecione o arquivo*">
-                                            <span class="input-group-btn input-group-sm">
-                                                <button type="button" class="btn btn-fab btn-fab-mini">
-                                                <i class="material-icons">attach_file</i>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </div> 
-                                </div>
-                            </div>
-                            <%}%>
-                            <div class="row"> 
-                                <div class="col-md-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Curso</label>
-                                        <input type="text" class="form-control" name="curso" value="<%=publicacao.curso%>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row"> 
-                                <div class="col-md-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Editora</label>
-                                        <input type="text" class="form-control" name="editora" value="<%=publicacao.editora%>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row"> 
-                                <div class="col-md-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Número de edição</label>
-                                        <input type="text" class="form-control" name="numero_edicao" value="<%=publicacao.numero_edicao%>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row"> 
-                                <div class="col-md-2">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Idioma</label>
-                                        <input type="text" class="form-control" name="idioma" value="<%=publicacao.idioma%>">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">País da publicação</label>
-                                        <input type="text" class="form-control" name="pais_publicacao" value="<%=publicacao.pais_publicacao%>">
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Ano</label>
-                                        <input type="text" class="form-control" name="ano_publicacao" value="<%=publicacao.ano_publicacao%>">
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Instituição</label>
-                                        <input type="text" class="form-control" name="instituicao" value="<%=publicacao.instituicao%>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row"> 
-                                <div class="col-md-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Sumário</label>
-                                        <input type="text" class="form-control" name="sumario" value="<%=publicacao.sumario%>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row"> 
-                                <div class="col-md-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Referências</label>
-                                        <input type="text" class="form-control" name="referencias" value="<%=publicacao.referencias%>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row"> 
-                                <div class="col-md-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Palavras-chave</label>
-                                        <input type="text" class="form-control" name="palavras_chaves" value="<%=publicacao.palavras_chaves%>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row"> 
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Resumo/Sinopse</label>
+                            
+                            <a data-toggle="collapse" href="#formAvancado" aria-expanded="false" aria-controls="collapseExample">Avançado<i class="material-icons">arrow_drop_down</i></a>
+                            <div class="collapse" id="formAvancado">
+                                <div class="row"> 
+                                    <div class="col-md-12">
                                         <div class="form-group label-floating">
-                                            <textarea class="form-control" rows="5" name="resumo_sinopse" value="<%=publicacao.resumo_sinopse%>"></textarea>
+                                            <label class="control-label">Curso</label>
+                                            <input type="text" class="form-control" name="curso" value="<%=publicacao.curso%>">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row"> 
-                                <div class="col-md-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">ISBN/ISSN</label>
-                                        <input type="text" class="form-control" name="isbn_issn" value="<%=publicacao.isbn_issn%>">
+                                <div class="row"> 
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Editora</label>
+                                            <input type="text" class="form-control" name="editora" value="<%=publicacao.editora%>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row"> 
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Número de edição</label>
+                                            <input type="text" class="form-control" name="numero_edicao" value="<%=publicacao.numero_edicao%>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row"> 
+                                    <div class="col-md-2">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Idioma</label>
+                                            <input type="text" class="form-control" name="idioma" value="<%=publicacao.idioma%>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">País da publicação</label>
+                                            <input type="text" class="form-control" name="pais_publicacao" value="<%=publicacao.pais_publicacao%>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Ano</label>
+                                            <input type="text" class="form-control" name="ano_publicacao" value="<%=publicacao.ano_publicacao%>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Instituição</label>
+                                            <input type="text" class="form-control" name="instituicao" value="<%=publicacao.instituicao%>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row"> 
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Sumário</label>
+                                            <input type="text" class="form-control" name="sumario" value="<%=publicacao.sumario%>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row"> 
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Referências</label>
+                                            <input type="text" class="form-control" name="referencias" value="<%=publicacao.referencias%>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row"> 
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Palavras-chave</label>
+                                            <input type="text" class="form-control" name="palavras_chaves" value="<%=publicacao.palavras_chaves%>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row"> 
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Resumo/Sinopse</label>
+                                            <div class="form-group label-floating">
+                                                <textarea class="form-control" rows="5" name="resumo_sinopse" value="<%=publicacao.resumo_sinopse%>"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row"> 
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">ISBN/ISSN</label>
+                                            <input type="text" class="form-control" name="isbn_issn" value="<%=publicacao.isbn_issn%>">
+                                        </div>
                                     </div>
                                 </div>
                             </div>

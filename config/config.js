@@ -53,6 +53,10 @@ module.exports = function () {
     
     //Conta de administrador
     server.models.User.findByUsername(server.locals.variables.administrador.username, function(err, results){
+        if(err){
+            console.log(err);
+            return;
+        }
         if(!results.length){
             server.models.User.create(server.locals.variables.administrador.username, server.locals.variables.administrador.senha, function(err, results){});
         }

@@ -1,5 +1,7 @@
 module.exports = function(app) {
     var controllers = app.controllers;
+    var multer = require('multer');
+    var upload = multer({dest: './files/tmp/'});
     //Rotas das páginas do front
     app.get('/', controllers.PageController.index);
 
@@ -27,12 +29,14 @@ module.exports = function(app) {
     
     app.get('/admin/publicacoes', controllers.PublicacaoController.lista);
     app.get('/admin/publicacoes/cadastrar', controllers.PublicacaoController.form);
+    app.post('/admin/publicacoes', upload.fields([{name: 'arquivo', maxCount: 1}, {name: 'capa', maxCount: 1}]), controllers.PublicacaoController.upload);
     app.post('/admin/publicacoes', controllers.PublicacaoController.cadastra);
     app.get('/admin/publicacoes/alterar/:id', controllers.PublicacaoController.alteraForm);
     app.post('/admin/publicacoes/alterar', controllers.PublicacaoController.alterar);
     app.post('/admin/publicacoes/deletar', controllers.PublicacaoController.deletar);
+    app.get('/files/publicacoes/:nome', controllers.PublicacaoController.downloadFile);
     //Fim das rotas de admin
-
+    
 
     //Rotas de erro
     app.use(function(req,res,next){
