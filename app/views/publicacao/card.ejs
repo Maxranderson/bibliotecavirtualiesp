@@ -1,0 +1,20 @@
+<div class="row card-publicacao">
+    <div class="col-4 col-md-4 card-image">
+        <img src="<%=publicacao.capa ? '/files/capas/'+publicacao.capa :'/img/sidebar-4.jpg'%>" alt="">
+    </div>
+    <div class="col-8 col-md-8 card-content">
+        <div class="card">
+            <div class="card-body">
+                <!-- Tab panes -->
+                <div class="tab-content text-justify">
+                    <div class="tab-pane active" id="home" role="tabpanel">
+                        <h6><%=publicacao.titulo%></h6>
+                        <p><strong>Autor: </strong><%=publicacao.autor%></p>
+                    </div>
+                </div>
+            </div>
+            <a href="/files/publicacoes/<%=publicacao.arquivo%>" class="card-link" style="position: absolute; bottom: 7px; right: 110px;">Donwload</a>
+            <a href="#" class="card-link" style="position: absolute; bottom: 7px; right: 20px;" title="Detalhes" data-toggle="modal" data-target="#modalPub<%=publicacao.id%>">Leia mais...</a>
+        </div>
+    </div>
+</div>

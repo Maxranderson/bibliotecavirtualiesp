@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <div class="form-group is-empty is-fileinput">
                                         <input type="file" id="inputFile4" name="arquivo" <%if(!publicacao.id){%>required<%}%>>
                                         <div class="input-group">
@@ -45,13 +45,11 @@
                                         </div>
                                     </div> 
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <div class="form-group is-empty is-fileinput">
                                         <input type="file" id="inputFile4" name="capa">
                                         <div class="input-group">
-                                            <input type="text" readonly="" class="form-control" tabindex="-1" placeholder="Selecione a imagem da capa*">
+                                            <input type="text" readonly="" class="form-control" tabindex="-1" placeholder="Selecione a imagem da capa">
                                             <span class="input-group-btn input-group-sm">
                                                 <button type="button" class="btn btn-fab btn-fab-mini" tabindex="-1">
                                                 <i class="material-icons">attach_file</i>
@@ -60,15 +58,27 @@
                                         </div>
                                     </div> 
                                 </div>
-                            </div>
-                            <div class="row"> 
-                                <div class="col-md-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Tipo de publicação*</label>
-                                        <input type="text" class="form-control" name="tipo_publicacao" value="<%=publicacao.tipo_publicacao%>" required>
-                                    </div>
+                                <div class="col-md-4">
+                                    <select class="form-control" name="tipo_publicacao" title="Tipo da publicação" required>
+                                        <option <%=publicacao.tipo_publicacao=="Artigo"?'selected':''%>>Artigo</option>
+                                        <option <%=publicacao.tipo_publicacao=="Dissertação"?'selected':''%>>Dissertação</option>
+                                        <option <%=publicacao.tipo_publicacao=="Fascículo"?'selected':''%>>Fascículo</option>
+                                        <option <%=publicacao.tipo_publicacao=="Livro"?'selected':''%>>Livro</option>
+                                        <option <%=publicacao.tipo_publicacao=="Monografia"?'selected':''%>>Monografia</option>
+                                        <option <%=publicacao.tipo_publicacao=="Plano de Aula"?'selected':''%>>Plano de Aula</option>
+                                        <option <%=publicacao.tipo_publicacao=="Revista"?'selected':''%>>Revista</option>
+                                        <option <%=publicacao.tipo_publicacao=="Tese"?'selected':''%>>Tese</option>
+                                    </select>
                                 </div>
                             </div>
+                            <div class="row"> 
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Palavras-chave*</label>
+                                            <input type="text" class="form-control" name="palavras_chaves" value="<%=publicacao.palavras_chaves%>" required>
+                                        </div>
+                                    </div>
+                                </div>
                             
                             <a data-toggle="collapse" href="#formAvancado" aria-expanded="false" aria-controls="collapseExample">Avançado<i class="material-icons">arrow_drop_down</i></a>
                             <div class="collapse" id="formAvancado">
@@ -135,14 +145,6 @@
                                         <div class="form-group label-floating">
                                             <label class="control-label">Referências</label>
                                             <input type="text" class="form-control" name="referencias" value="<%=publicacao.referencias%>">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row"> 
-                                    <div class="col-md-12">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Palavras-chave</label>
-                                            <input type="text" class="form-control" name="palavras_chaves" value="<%=publicacao.palavras_chaves%>">
                                         </div>
                                     </div>
                                 </div>

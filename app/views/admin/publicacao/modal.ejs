@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <p><strong>Autor: </strong><%=publicacao.autor%></p>
                 <p><strong>Tipo de Publicação: </strong><%=publicacao.tipo_publicacao%></p>
-                <p><strong>Arquivo: </strong> <%=publicacao.arquivo%></p>
+                <p><strong>Arquivo: </strong> <a href="/<%=downloadPath+publicacao.arquivo%>" title="Baixar Arquivo"><i class="material-icons">file_download</i></a>
                 <p><strong>Curso: </strong><%=publicacao.curso%></p>
                 <p><strong>Editora: </strong><%=publicacao.editora%></p>
                 <p><strong>Número da edição: </strong><%=publicacao.numero_edicao%></p>

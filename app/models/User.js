@@ -49,11 +49,13 @@ module.exports = function(app){
 
     User.findById = function(id, callback){
         UserDAO.findById(id, function(err, results){
-            if(results[0]){
-                var user = new User(results[0]);
-                results[0] = user;        
-                callback(err, results);
-                return;
+            if(results){
+                if(results[0]){
+                    var user = new User(results[0]);
+                    results[0] = user;        
+                    callback(err, results);
+                    return;
+                }
             }
             callback(err, results);
         });
@@ -61,11 +63,13 @@ module.exports = function(app){
 
     User.findByUsername = function(username, callback){
         UserDAO.findByUsername(username, function(err, results){
-            if(results[0]){
-                var user = new User(results[0]);
-                results[0] = user;     
-                callback(err, results);
-                return;
+            if(results){
+                if(results[0]){
+                    var user = new User(results[0]);
+                    results[0] = user;     
+                    callback(err, results);
+                    return;
+                }
             }
             callback(err, results);
         });

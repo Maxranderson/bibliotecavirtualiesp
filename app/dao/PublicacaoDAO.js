@@ -35,7 +35,6 @@ module.exports = function (app) {
         var id = publicacao.id;
 
         delete publicacao.id;
-        delete publicacao.arquivo;
 
         var keys = Object.keys(publicacao)
         var columnsQuery = keys.join(' = ?, ') + ' = ?';

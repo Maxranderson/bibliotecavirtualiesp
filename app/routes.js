@@ -4,6 +4,9 @@ module.exports = function(app) {
     var upload = multer({dest: './files/tmp/'});
     //Rotas das páginas do front
     app.get('/', controllers.PageController.index);
+    app.get('/publicacoes', controllers.PageController.listaPublicacoes);
+    app.get('/files/publicacoes/:nome', controllers.PublicacaoController.downloadFile);
+    app.get('/files/capas/:nome', controllers.PublicacaoController.downloadImage);
 
     app.get('/login', controllers.AuthenticationController.login);
     app.post('/login', app.locals.passport.authenticate('local-login',{
@@ -32,9 +35,8 @@ module.exports = function(app) {
     app.post('/admin/publicacoes', upload.fields([{name: 'arquivo', maxCount: 1}, {name: 'capa', maxCount: 1}]), controllers.PublicacaoController.upload);
     app.post('/admin/publicacoes', controllers.PublicacaoController.cadastra);
     app.get('/admin/publicacoes/alterar/:id', controllers.PublicacaoController.alteraForm);
-    app.post('/admin/publicacoes/alterar', controllers.PublicacaoController.alterar);
+    app.post('/admin/publicacoes/alterar', upload.fields([{name: 'arquivo', maxCount: 1}, {name: 'capa', maxCount: 1}]), controllers.PublicacaoController.alterar);
     app.post('/admin/publicacoes/deletar', controllers.PublicacaoController.deletar);
-    app.get('/files/publicacoes/:nome', controllers.PublicacaoController.downloadFile);
     //Fim das rotas de admin
     
 

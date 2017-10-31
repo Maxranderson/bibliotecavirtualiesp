@@ -1,5 +1,5 @@
 <div class="modal fade" id="modalPub<%=publicacao.id%>" tabindex="-1" role="dialog" aria-labelledby="modalLabel<%=publicacao.id%>">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <p><strong>Autor: </strong><%=publicacao.autor%></p>
                 <p><strong>Tipo de Publicação: </strong><%=publicacao.tipo_publicacao%></p>
-                <p><strong>Arquivo: </strong> <%=publicacao.arquivo%></p>
+                <p><strong>Arquivo: </strong> <a href="/files/publicacoes/<%=publicacao.arquivo%>" title="Baixar Arquivo">Download</a>
                 <p><strong>Curso: </strong><%=publicacao.curso%></p>
                 <p><strong>Editora: </strong><%=publicacao.editora%></p>
                 <p><strong>Número da edição: </strong><%=publicacao.numero_edicao%></p>
