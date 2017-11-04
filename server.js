@@ -1,8 +1,8 @@
 var server = require('./config/config.js')();
 
-server.listen(server.locals.variables.porta, function () {
+server.listen(process.env.PORT, function () {
     
-    console.log('Servidor rodando na porta: ' + server.locals.variables.porta);
+    console.log('Servidor rodando na porta: ' + process.env.PORT);
     //Migração do banco
     //FIXME Problema com muitas querys no mesmo script
     // server.database.versionamento();
