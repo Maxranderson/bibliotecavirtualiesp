@@ -1,6 +1,6 @@
 {
     "database": {
-        "client": "mysql",
+        "client": "pg",
         "default": {
             "host": "endereco",
             "user": "usuario",
