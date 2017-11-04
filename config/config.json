@@ -1,5 +1,6 @@
 {
     "database": {
+        "client": "mysql",
         "default": {
             "host": "endereco",
             "user": "usuario",

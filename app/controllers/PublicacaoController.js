@@ -2,7 +2,6 @@ module.exports = function (app) {
 
     var Publicacao = app.models.Publicacao;
     const fs = require('fs');
-    var count = 0;
 
     this.lista = function (req, res) {
 
@@ -57,7 +56,7 @@ module.exports = function (app) {
             } else {
                 req.flash('successMessage', app.locals.variables.mensagem.publicacao.sucesso);
             }
-            saveFiles(req.files, result.insertId);
+            saveFiles(req.files, result[0]);
             res.redirect('/admin/publicacoes/cadastrar');
         });
 
@@ -90,14 +89,15 @@ module.exports = function (app) {
 
     this.alterar = function (req, res) {
         var publicacao = req.body;
+        var id = publicacao.id;
         var keys = Object.keys(publicacao);
         for(var i = 0;i<keys.length;i++) if(!publicacao[keys[i]]) delete publicacao[keys[i]];
 
-        Publicacao.update(req.body, function(err, results){
+        Publicacao.update(publicacao, function(err, results){
             if(err){
                 req.flash('dangerMessage', err.message);
             }else{
-                saveFiles(req.files, req.body.id);
+                saveFiles(req.files, id);
                 req.flash('successMessage', app.locals.variables.mensagem.publicacao.sucessoAlterado);
             }
             res.redirect('/admin/publicacoes');

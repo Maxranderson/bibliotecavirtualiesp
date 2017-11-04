@@ -1,9 +1,9 @@
 module.exports = function(app){
-    
-    var mysql = require('mysql');
+    var knex = require('knex')({client: app.locals.variables.database.client, connection: app.locals.variables.database.default});
+    // var mysql = require('mysql');
     
     function createDBConnection(){
-        return mysql.createConnection(app.locals.variables.database.default);
+        return knex;
     }
 
     return createDBConnection;

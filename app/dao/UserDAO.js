@@ -1,6 +1,6 @@
 module.exports = function(app){
     
-        var connectionConfig = app.factorys.connectionFactory;
+        var knex = app.factorys.connectionFactory();
         
         this.list = function(paginacao, callback){
             var connection = connectionConfig();
@@ -34,16 +34,19 @@ module.exports = function(app){
         }
 
         this.findById = function(id, callback){
-            var connection = connectionConfig();
-            connection.query('select * from users where id = ?',[id], callback);
-            connection.end();
+            // var connection = connectionConfig();
+            // connection.query('select * from users where id = ?',[id], callback);
+            // connection.end();
+
+            knex('users').select().where({id: id}).asCallback(callback);
         }
 
         this.findByUsername = function(username, callback){
-            var connection = connectionConfig();
-            connection.query('select * from users where username = ?',[username], callback);
-            connection.end();
+            // var connection = connectionConfig();
+            // connection.query('select * from users where username = ?',[username], callback);
+            // connection.end();
+            knex('users').select().where({username: username}).asCallback(callback);
         }
-        
+
         return this;
     }

@@ -1,8 +1,8 @@
-module.exports = function(app){
+module.exports = function (app) {
 
-    this.index = function(req, res){
-        res.render('admin/index', {user:req.user});
+    this.index = function (req, res) {
+        res.render('admin/index', {user: req.user});
     };
-    
-   return this; 
+
+    return this;
 }
