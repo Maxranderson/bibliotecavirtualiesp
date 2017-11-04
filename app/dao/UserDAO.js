@@ -3,34 +3,31 @@ module.exports = function(app){
         var knex = app.factorys.connectionFactory();
         
         this.list = function(paginacao, callback){
-            var connection = connectionConfig();
-            var offset = paginacao.pageSize*(paginacao.currentPage-1);
-            connection.query('select count(*) as qt from users; ', function(erro, count){
-                var connection = connectionConfig();
-                connection.query('select * from users limit ? offset ?',[paginacao.pageSize, offset],function(err, results){
+
+            knex('users').count('* as qt').asCallback(function (erro, count) {
+
+                var offset = paginacao.pageSize * (paginacao.currentPage - 1);
+                knex('users').select().limit(paginacao.size).offset(offset).asCallback(function (err, results) {
+
                     callback(err, results, count[0].qt);
+
                 });
-                connection.end();
+
             });
-            connection.end();
         }
         
         this.insert = function(user, callback){
-            var connection = connectionConfig();
-            connection.query('insert into users set ?', user, callback);
-            connection.end();
+            knex('users').insert(user).asCallback(callback);
         }
 
         this.delete = function(user,callback){
-            var connection = connectionConfig()
-            connection.query('delete from users where id = ?', [user.id], callback)
-            connection.end();
+
+            knex('users').del().where({id: user.id}).asCallback(callback);
         }
 
         this.update = function(user, callback){
-            var connection = connectionConfig();
-            connection.query('update users set password= ? where id = ?', [user.password, user.id], callback);
-            connection.end();
+
+            knex('users').where({id: user.id}).update({password: user.password}).asCallback(callback);
         }
 
         this.findById = function(id, callback){
