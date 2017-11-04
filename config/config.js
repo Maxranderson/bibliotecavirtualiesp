@@ -51,16 +51,16 @@ module.exports = function () {
 
     consign().include('./database/versionamento.js').into(server);
     
-    //Conta de administrador
-    server.models.User.findByUsername(server.locals.variables.administrador.username, function(err, results){
-        if(err){
-            console.log(err);
-            return;
-        }
-        if(!results.length){
-            server.models.User.create(server.locals.variables.administrador.username, server.locals.variables.administrador.senha, function(err, results){});
-        }
-    });
+    //Conta de administrador, ainda decidindo se precisa
+    // server.models.User.findByUsername(server.locals.variables.administrador.username, function(err, results){
+    //     if(err){
+    //         console.log(err);
+    //         return;
+    //     }
+    //     if(!results.length){
+    //         server.models.User.create(server.locals.variables.administrador.username, server.locals.variables.administrador.senha, function(err, results){});
+    //     }
+    // });
     require('./passport.js')(server, passport);
 
     return server;
