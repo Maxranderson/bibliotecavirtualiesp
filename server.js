@@ -1,6 +1,6 @@
 var server = require('./config/config.js')();
 
-server.listen(process.env.PORT, function () {
+server.listen(process.env.PORT || server.locals.variables.porta, function () {
     
     console.log('Servidor rodando na porta: ' + process.env.PORT);
     //Migração do banco

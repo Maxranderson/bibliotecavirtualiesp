@@ -26,7 +26,7 @@ module.exports = {
 
   production: {
     client: production.client,
-    connection: process.env.DATABASE_URL,
+    connection: process.env.DATABASE_URL || production.default,
     pool: {
       min: 2,
       max: 10
