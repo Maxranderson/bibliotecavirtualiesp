@@ -1,7 +1,7 @@
 
 <%-include('../template/top', {});%>
     <!-- Navbar -->
-    <%-include('../template/navbar.ejs', {config:{}});%>
+    <%-include('../template/navbar', {config:{}});%>
     <!-- End Navbar -->
     
         <div class="main">
@@ -10,39 +10,20 @@
                     <h3 class="title">Públicações</h3>
                     <div class="row">
                         <div id="pagination-row" class="col-md-12">
-                            <%- include('../template/pagination.ejs', { paginacao: paginacao})%>
+                            <%- include('../template/pagination', { paginacao: paginacao})%>
                         </div>
                     </div>
                     <div class="row">
                         <%for(var i = 0; i<publicacoes.length; i++){%>
                         <div class="col-md-6">
-                            <div class="row card-publicacao">
-                                <div class="col-4 col-md-4 card-image">
-                                    <img src="<%=publicacoes[i].capa ? /img/+publicacoes[i].capa :'/img/mini-livros.jpg'%>" alt="">
-                                </div>
-                                <div class="col-8 col-md-8 card-content">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <!-- Tab panes -->
-                                            <div class="tab-content text-justify">
-                                                <div class="tab-pane active" id="home" role="tabpanel">
-                                                    <h6><%=publicacoes[i].titulo%></h6>
-                                                    <p><strong>Autor: </strong><%=publicacoes[i].autor%></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a href="/files/publicacoes/<%=publicacoes[i].arquivo%>" class="card-link" style="position: absolute; bottom: 7px; right: 110px;">Donwload</a>
-                                        <a href="#" class="card-link" style="position: absolute; bottom: 7px; right: 20px;" title="Detalhes" data-toggle="modal" data-target="#modalPub<%=publicacoes[i].id%>">Leia mais...</a>
-                                    </div>
-                                </div>
-                            </div>
+                            <%- include('./card', { publicacao: publicacoes[i]} );%>
                         </div>
-                        <%- include('./modal.ejs', { publicacao: publicacoes[i] });%>
+                        <%- include('./modal', { publicacao: publicacoes[i] });%>
                         <%}%>
                     </div>
                     <div class="row">
                         <div id="pagination-row" class="col-md-12">
-                            <%- include('../template/pagination.ejs', { paginacao: paginacao})%>
+                            <%- include('../template/pagination', { paginacao: paginacao})%>
                         </div>
                     </div>
                 </div>
