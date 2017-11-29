@@ -31,6 +31,7 @@
         <div class="main">
             <div class="section section-tabs">
                 <div class="container">
+                    <%-include('./template/mensagem', {mensagem:mensagem})%>
                     <h3 class="title">Últimas públicações</h3>
                     <div class="row">
                         <%for(var i = 0; i<publicacoes.length; i++){%>

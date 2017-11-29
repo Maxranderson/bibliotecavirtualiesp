@@ -1,6 +1,7 @@
 module.exports = function (app) {
 
-    var Publicacao = app.models.Publicacao;
+    const Publicacao = app.models.Publicacao;
+    const Mensagem = app.models.Mensagem;
     const fs = require('fs');
 
     this.lista = function (req, res) {
@@ -8,77 +9,90 @@ module.exports = function (app) {
         var paginacao = {
             currentPage: req.query.page || 1,
             pageCount: 1,
-            pageSize: 10,
-        }
-        var msgm = {}
-        var danger = req.flash('dangerMessage');
-        var success = req.flash('successMessage');
-        if (danger.length) msgm.danger = danger;
-        if (success.length) msgm.success = success;
+            pageSize: 10
+        };
         Publicacao.list(paginacao, function (erro, results, count) {
+            var msgm = new Mensagem();
+            var publicacoes = [{}];
+
+            msgm.addError(req.flash('dangerMessage'));
+            msgm.addSuccess(req.flash('successMessage'));
+
             if (erro) {
-                console.log(erro);
-                res.render('admin/publicacao/lista', { paginacao: paginacao, publicacoes: {}, mensagem: { danger: erro } })
+                msgm.addError(erro);
+                console.error(erro);
+            }
+            if(results.length){
+                publicacoes = results;
             }
             paginacao.pageCount = Math.ceil(count/paginacao.pageSize);
-            res.render('admin/publicacao/lista', { paginacao: paginacao, publicacoes: results, mensagem: msgm, downloadPath: (app.locals.variables.downloadPath+'publicacoes/') });
+            res.render('admin/publicacao/lista', { paginacao: paginacao, publicacoes: publicacoes, mensagem: msgm, downloadPath: (app.locals.variables.downloadPath+'publicacoes/') });
         });
 
     };
 
     this.form = function (req, res) {
+        var msgm = new Mensagem();
+        msgm.addError(req.flash('dangerMessage'));
+        msgm.addSuccess(req.flash('successMessage'));
 
-        var msgm = {}
-        var danger = req.flash('dangerMessage');
-        var success = req.flash('successMessage');
-        if (danger.length) msgm.danger = danger;
-        if (success.length) msgm.success = success;
         res.render('admin/publicacao/form', { mensagem: msgm, publicacao:{} });
 
     };
 
-    //TODO: Validar extensão dos arquivos
-    this.upload = function(req,res,next){
-        next();
-    }
     //TODO: Validar os dados do formulário
     this.cadastra = function (req, res) {
+        var files = req.files;
 
-        var publicacao = req.body;
-        if(publicacao.arquivo) delete publicacao.arquivo;
-        var keys = Object.keys(publicacao);
-        for(var i = 0;i<keys.length;i++) if(!publicacao[keys[i]]) delete publicacao[keys[i]];
-
-        Publicacao.insert(req.body, function (erro, result) {
-            if (erro) {
-                console.log(erro);
-                req.flash('dangerMessage', erro);
-            } else {
-                req.flash('successMessage', app.locals.variables.mensagem.publicacao.sucesso);
+        saveFiles([],files, function(erros) {
+            if (erros.length) {
+                req.flash('dangerMessage', erros);
+                res.redirect('/admin/publicacoes/cadastrar');
+                return;
             }
-            saveFiles(req.files, result[0]);
-            res.redirect('/admin/publicacoes/cadastrar');
-        });
 
+            if(files['arquivo']) req.body.arquivo = files['arquivo'][0].filename+'.pdf';
+            if(files['capa']) req.body.capa = files['capa'][0].filename+(files['capa'][0].originalname.substring(req.files['capa'][0].originalname.length - 5, files['capa'][0].originalname.length));
+
+            var publicacao = req.body;
+            var keys = Object.keys(publicacao);
+            for(var i = 0;i<keys.length;i++) if(!publicacao[keys[i]]) delete publicacao[keys[i]];
+
+            Publicacao.insert(req.body, function (erro, result) {
+                if (erro) {
+                    console.log(erro);
+                    req.flash('dangerMessage', erro);
+                } else {
+                    req.flash('successMessage', app.locals.variables.mensagem.publicacao.sucesso);
+                }
+                res.redirect('/admin/publicacoes/cadastrar');
+            });
+        });
+    };
+
+    //TODO: Validar extensão dos arquivos
+    this.upload = function(err,req,res,next){
+        console.error(err);
+        next();
     };
 
     this.downloadFile = function(req, res){
         var filename = req.params.nome;
         res.download(app.locals.variables.downloadPath+"publicacoes/"+filename);
-    }
+    };
 
     this.downloadImage = function(req, res){
         var filename = req.params.nome;
         res.download(app.locals.variables.downloadPath+"capas/"+filename);
-    }
+    };
 
     this.alteraForm = function(req, res){
         Publicacao.findById({id: req.params.id}, function(err, results){
-            var msgm = {};
+            var msgm = new Mensagem();
             var publicacao = {};
-            if(err) msgm.danger = err;
+            if(err) msgm.addError(err);
             if(!results.length){
-                msgm.danger = app.locals.variables.mensagem.publicacao.naoEncontrado;
+                msgm.addError(app.locals.variables.mensagem.publicacao.naoEncontrado);
             }else{
                 publicacao = results[0];
             }
@@ -93,16 +107,20 @@ module.exports = function (app) {
         var keys = Object.keys(publicacao);
         for(var i = 0;i<keys.length;i++) if(!publicacao[keys[i]]) delete publicacao[keys[i]];
 
-        Publicacao.update(publicacao, function(err, results){
-            if(err){
-                req.flash('dangerMessage', err.message);
-            }else{
-                saveFiles(req.files, id);
-                req.flash('successMessage', app.locals.variables.mensagem.publicacao.sucessoAlterado);
+        saveFiles([], res.files, function(erros) {
+            if(erros.length){
+                req.flash('dangerMessage', erros);
+                res.redirect('/admin/publicacoes');
             }
-            res.redirect('/admin/publicacoes');
+            Publicacao.update(publicacao, function(err, results){
+                if(err){
+                    req.flash('dangerMessage', err);
+                }else{
+                    req.flash('successMessage', app.locals.variables.mensagem.publicacao.sucessoAlterado);
+                }
+                res.redirect('/admin/publicacoes');
+            });
         });
-
     };
 
     this.deletar = function (req, res) {
@@ -118,37 +136,47 @@ module.exports = function (app) {
 
     };
 
-    function saveFiles(files, id){
-        if(files && id){
-            if(files['arquivo']){
-                var filename = 'publicacaoId'+id+'.pdf';
-                var file = app.locals.variables.downloadPath+'publicacoes/'+filename;
-                fs.createReadStream(files['arquivo'][0].path).pipe(fs.createWriteStream(file)).on('finish', function(writeErr){
-                    if(writeErr) console.log(writeErr);
-                    Publicacao.update({id: id, arquivo: filename}, function(err, result){
-                        if(err) console.log(err);
-                        fs.unlink(files['arquivo'][0].path, function(error){
-                            if(error) console.log(error);
-                        });
-                    });
-                });
-            }
-            if(files['capa']){
-                var filenameCapa = 'capaId'+id+'.jpg';
-                var fileCapa = app.locals.variables.downloadPath+'capas/'+filenameCapa;
-                fs.createReadStream(files['capa'][0].path).pipe(fs.createWriteStream(fileCapa)).on('finish', function(writeErr){
-                    if(writeErr) console.log(writeErr);
-                    Publicacao.update({id: id, capa: filenameCapa}, function(err, result){
-                        if(err) console.log(err);
-                        fs.unlink(files['capa'][0].path, function(error){
-                            if(error) console.log(error);
-                        });
-                    });
-                });
-            }
+    function savePublicacaoFile(erros, publicacaoFile, callback){
+        var filename = publicacaoFile.filename+'.pdf';
+        var file = app.locals.variables.downloadPath+'publicacoes/'+filename;
+        fs.createReadStream(publicacaoFile.path)
+            .pipe(fs.createWriteStream(file))
+            .on('finish', function(){
+                fs.unlink(publicacaoFile.path);
+                callback(erros);
+            }).on('error', function(writeErr){
+                fs.unlink(publicacaoFile.path);
+                console.error(writeErr);
+                callback(erros)
+            });
+    }
 
-        }else{
-            throw new Error('Arquivo ou ID não foi informado');
+    function saveCapaFile(erros, capaFile, callback){
+        var filenameCapa = capaFile.filename+(capaFile.originalname.substring(capaFile.originalname.length - 5, capaFile.originalname.length));
+        var fileCapa = app.locals.variables.downloadPath+'capas/'+filenameCapa;
+        fs.createReadStream(capaFile.path)
+            .pipe(fs.createWriteStream(fileCapa))
+            .on('finish', function(){
+                fs.unlink(capaFile.path);
+                callback(erros);
+            }).on('error', function(writeErr){
+                fs.unlink(capaFile.path);
+                console.error(writeErr);
+                callback(erros);
+            });
+    }
+
+    function saveFiles(erros, files, callback){
+        if(files){
+            if(files['arquivo']){
+                savePublicacaoFile(erros, files['arquivo'][0], function(err){
+                    if(files['capa']){
+                        saveCapaFile(err, files['capa'][0], callback);
+                    }else{
+                        callback(erros);
+                    }
+                });
+            }
         }
     }
 

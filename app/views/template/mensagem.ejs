@@ -1,0 +1,72 @@
+<%if(mensagem.info.length){%>
+<div class="alert alert-info" role="alert">
+    <div class="container">
+        <div class="alert-icon">
+            <i class="now-ui-icons travel_info"></i>
+        </div>
+        <%for(var i = 0; i<mensagem.info.length; i++){%>
+            <strong>Informação: </strong> <%=mensagem.info[i]%>
+        <%}%>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">
+				<i class="now-ui-icons ui-1_simple-remove"></i>
+			</span>
+        </button>
+    </div>
+</div>
+<%}%>
+<%if(mensagem.success.length){%>
+<div class="alert alert-success" role="alert">
+    <div class="container">
+        <div class="alert-icon">
+            <i class="now-ui-icons ui-2_like"></i>
+        </div>
+        <%for(var i = 0; i<mensagem.danger.length; i++){%>
+            <strong>Sucesso: </strong> <%=mensagem.success[i]%>
+        <%}%>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">
+				<i class="now-ui-icons ui-1_simple-remove"></i>
+			</span>
+        </button>
+    </div>
+</div>
+<%}%>
+<%if(mensagem.warning.length){%>
+<div class="alert alert-warning" role="alert">
+    <div class="container">
+        <div class="alert-icon">
+            <i class="now-ui-icons ui-1_bell-53"></i>
+        </div>
+        <%for(var i = 0; i<mensagem.warning.length; i++){%>
+            <strong>Aviso: </strong> <%=mensagem.warning[i]%>
+        <%}%>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">
+				<i class="now-ui-icons ui-1_simple-remove"></i>
+			</span>
+        </button>
+    </div>
+</div>
+<%}%>
+<%if(mensagem.danger.length){%>
+<div class="alert alert-danger" role="alert">
+    <div class="container">
+        <div class="alert-icon">
+            <i class="now-ui-icons objects_support-17"></i>
+        </div>
+            <%for(var i = 0; i<mensagem.danger.length; i++){%>
+                <strong>Alerta:</strong> <%=mensagem.danger[i]%>
+            <%}%>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">
+				<i class="now-ui-icons ui-1_simple-remove"></i>
+			</span>
+        </button>
+    </div>
+</div>
+<%}%>
+
+
+
+

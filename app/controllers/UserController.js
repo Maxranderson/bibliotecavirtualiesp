@@ -1,6 +1,8 @@
 module.exports = function (app) {
     
     var User = app.models.User;
+    var Mensagem = app.models.Mensagem;
+
     this.lista = function(req, res){
         var paginacao = {
             currentPage: req.query.page || 1,
@@ -8,38 +10,39 @@ module.exports = function (app) {
             pageSize: 10,
         };
 
-        var msgm = {};
-        var danger = req.flash('dangerMessage');
-        var success = req.flash('successMessage');
-        if(danger.length) msgm.danger = danger;
-        if(success.length) msgm.success = success;
-
         User.list(paginacao,function(erro, results, count){
+            var usuarios = [{}];
+            var msgm = new Mensagem();
+            msgm.addError(req.flash('dangerMessage'));
+            msgm.addSuccess(req.flash('successMessage'));
             if(erro){
-                console.log(erro);
-                res.render('admin/user/lista',{paginacao:paginacao,usuarios:{},mensagem:{danger: erro}});
+                msgm.addError(erro);
+                console.error(erro);
+            }
+            if(results) if(results.length){
+                usuarios = results;
             }
             paginacao.pageCount = Math.ceil(count/paginacao.pageSize);
-            res.render('admin/user/lista',{paginacao:paginacao,usuarios:results,mensagem:msgm});
+            res.render('admin/user/lista',{paginacao:paginacao,usuarios:usuarios,mensagem:msgm});
         });
     };
 
     this.form = function(req, res){
-        var msgm = {};
-        var danger = req.flash('dangerMessage');
-        var success = req.flash('successMessage');
-        if(danger.length) msgm.danger = danger;
-        if(success.length) msgm.success = success;
+        var msgm = new Mensagem();
+
+        msgm.addError(req.flash('dangerMessage'));
+        msgm.addSuccess(req.flash('successMessage'));
+
         res.render('admin/user/form', {mensagem:msgm, user:{}});
     };
 
     this.alteraForm = function(req, res){
         User.findById(req.params.id, function(err, results){
-            var msgm = {};
+            var msgm = new Mensagem();
             var user = {};
-            if(err) msgm.danger = err;
+            if(err) msgm.addError(err);
             if(!results.length){
-                msgm.danger = app.locals.variables.mensagem.usuario.naoEncontrado;
+                msgm.addError(app.locals.variables.mensagem.usuario.naoEncontrado);
             }else{
                 user = results[0];
             }

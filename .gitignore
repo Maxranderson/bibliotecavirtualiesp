@@ -4,3 +4,4 @@ config/localConfig.json
 npm-debug.log
 .vscode/
 .idea/
+.env

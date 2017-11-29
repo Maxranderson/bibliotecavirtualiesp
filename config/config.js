@@ -7,6 +7,7 @@ var session = require('express-session');
 var config = require('./config.json');
 var flash = require('connect-flash');
 var passport = require('passport');
+var env = require('node-env-file');
 
 function seExisteLocalConfig(){
     try{
@@ -19,6 +20,7 @@ function seExisteLocalConfig(){
 
 module.exports = function () {
 
+    env("./.env");
     server.set('view engine', 'ejs');
     server.set('views', './app/views');
     server.use(express.static('public'));
