@@ -7,7 +7,6 @@ exports.up = function(knex, Promise) {
     table.string('tipo_publicacao', 20).notNullable();
     table.string('arquivo', 255);
     table.string('capa', 255);
-    table.string('organizador', 255);
     table.string('curso', 150);
     table.string('editora', 255);
     table.string('numero_edicao', 45);
@@ -18,7 +17,7 @@ exports.up = function(knex, Promise) {
     table.string('instituicao', 100);
     table.text('sumario');
     table.text('referencias');
-    table.text('palavras_chaves');
+    table.text('palavras_chaves').notNullable();
     table.text('resumo_sinopse');
   });
 };

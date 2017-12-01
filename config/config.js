@@ -21,11 +21,7 @@ function seExisteLocalConfig(){
 module.exports = function () {
 
 
-    try{
-        env("./.env");
-    }catch (e){
-        console.error(".env não definido! Crie um .env no root");
-    }
+    env("./.env");
     server.set('view engine', 'ejs');
     server.set('views', './app/views');
     server.use(express.static('public'));

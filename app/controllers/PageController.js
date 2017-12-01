@@ -9,8 +9,8 @@ module.exports = function (app) {
             var msgm = new Mensagem();
 
             if (err) {
-                msgm.addError(err);
                 console.error(err);
+                msgm.addError(err.message);
             }
 
             if(results) if (results.length) {
@@ -32,8 +32,8 @@ module.exports = function (app) {
             msgm.addError(req.flash('dangerMessage'));
             msgm.addSuccess(req.flash('successMessage'));
             if (erro) {
-                msgm.addError(erro);
                 console.error(erro);
+                msgm.addError(erro.message);
             }
             if(results) if (results.length) {
                 publicacoes = results;

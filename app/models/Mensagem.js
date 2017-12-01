@@ -9,7 +9,7 @@ module.exports = function(app){
 
     Mensagem.prototype.addError = function(error){
         if(error.length){
-            if(typeof error === typeof []){
+            if(error instanceof Array){
                 this.danger = this.danger.concat(error);
             }else{
                 this.danger.push(error);

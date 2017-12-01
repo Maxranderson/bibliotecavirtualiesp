@@ -16,8 +16,8 @@ module.exports = function (app) {
             msgm.addError(req.flash('dangerMessage'));
             msgm.addSuccess(req.flash('successMessage'));
             if(erro){
-                msgm.addError(erro);
                 console.error(erro);
+                msgm.addError(erro.message);
             }
             if(results) if(results.length){
                 usuarios = results;
@@ -40,7 +40,10 @@ module.exports = function (app) {
         User.findById(req.params.id, function(err, results){
             var msgm = new Mensagem();
             var user = {};
-            if(err) msgm.addError(err);
+            if(err){
+                console.error(err);
+                msgm.addError(err.message);
+            }
             if(!results.length){
                 msgm.addError(app.locals.variables.mensagem.usuario.naoEncontrado);
             }else{
@@ -54,7 +57,8 @@ module.exports = function (app) {
     this.alterar = function(req, res){
         User.update({id: req.body.id, password: req.body.password}, function(err, results){
             if(err){
-                req.flash('dangerMessage', err);
+                console.error(err);
+                req.flash('dangerMessage', err.message);
             }else{
                 req.flash('successMessage', app.locals.variables.mensagem.usuario.sucessoAlterado);
             }
@@ -65,7 +69,8 @@ module.exports = function (app) {
     this.deletar = function(req, res){
         User.delete({id: req.body.id}, function(err, results){
             if(err){
-                req.flash('dangerMessage', err);
+                console.error(err);
+                req.flash('dangerMessage', err.message);
             }else{
                 req.flash('successMessage', app.locals.variables.mensagem.usuario.sucessoDeletado);
             }
@@ -76,7 +81,8 @@ module.exports = function (app) {
     this.cadastra = function(req, res){
         User.create(req.body.username, req.body.password, function(err, results){
             if(err){
-                req.flash('dangerMessage', err);
+                console.error(err);
+                req.flash('dangerMessage', err.message);
             }else{
                 req.flash('successMessage', app.locals.variables.mensagem.usuario.sucesso);
             }

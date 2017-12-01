@@ -1,7 +1,7 @@
 module.exports = function(app) {
     var controllers = app.controllers;
     var multer = require('multer');
-    var upload = multer({dest: './files/tmp/'});
+    var upload = multer({dest: './files/tmp/', fileFilter: controllers.PublicacaoController.fileFilter, limits:{ fileSize: 512000000}});
     //Rotas das páginas do front
     app.get('/', controllers.PageController.index);
     app.get('/publicacoes', controllers.PageController.listaPublicacoes);
@@ -32,10 +32,17 @@ module.exports = function(app) {
     
     app.get('/admin/publicacoes', controllers.PublicacaoController.lista);
     app.get('/admin/publicacoes/cadastrar', controllers.PublicacaoController.form);
-    app.post('/admin/publicacoes', upload.fields([{name: 'arquivo', maxCount: 1}, {name: 'capa', maxCount: 1}]), controllers.PublicacaoController.upload);
-    app.post('/admin/publicacoes', controllers.PublicacaoController.cadastra);
+    app.post('/admin/publicacoes', upload.fields([{name: 'arquivo', maxCount: 1}, {name: 'capa', maxCount: 1}]),
+        controllers.PublicacaoController.cadastraError,
+        controllers.PublicacaoController.formValidationRules,
+        controllers.PublicacaoController.validarCadastra,
+        controllers.PublicacaoController.cadastra);
     app.get('/admin/publicacoes/alterar/:id', controllers.PublicacaoController.alteraForm);
-    app.post('/admin/publicacoes/alterar', upload.fields([{name: 'arquivo', maxCount: 1}, {name: 'capa', maxCount: 1}]), controllers.PublicacaoController.alterar);
+    app.post('/admin/publicacoes/alterar', upload.fields([{name: 'arquivo', maxCount: 1}, {name: 'capa', maxCount: 1}]),
+        controllers.PublicacaoController.alterarError,
+        controllers.PublicacaoController.formValidationRules,
+        controllers.PublicacaoController.validarAlterar,
+        controllers.PublicacaoController.alterar);
     app.post('/admin/publicacoes/deletar', controllers.PublicacaoController.deletar);
     //Fim das rotas de admin
     
