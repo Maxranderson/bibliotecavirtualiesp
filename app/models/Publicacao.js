@@ -1,6 +1,6 @@
 module.exports = function (app) {
 
-    var PublicacaoDAO = app.dao.PublicacaoDAO;
+    const PublicacaoDAO = app.dao.PublicacaoDAO;
     const { body, oneOf } = require('express-validator/check');
 
     function Publicacao() {
@@ -34,6 +34,10 @@ module.exports = function (app) {
 
     Publicacao.lastFour = function(callback){
         PublicacaoDAO.lastFour(callback);
+    }
+
+    Publicacao.listWithSearch = function(search, paginacao, callback){
+        PublicacaoDAO.listWithSearch(search, paginacao, callback);
     }
 
     Publicacao.validationRules = [

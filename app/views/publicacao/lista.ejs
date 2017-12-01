@@ -13,12 +13,14 @@
                             <%- include('../template/pagination', { paginacao: paginacao})%>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row publicacoes-row">
                         <%for(var i = 0; i<publicacoes.length; i++){%>
-                        <div class="col-md-6">
-                            <%- include('./card', { publicacao: publicacoes[i]} );%>
-                        </div>
-                        <%- include('./modal', { publicacao: publicacoes[i] });%>
+                            <%if(Object.keys(publicacoes[i]) != 0){%>
+                                <div class="col-md-6">
+                                    <%- include('./card', { publicacao: publicacoes[i]} );%>
+                                </div>
+                                <%- include('./modal', { publicacao: publicacoes[i] });%>
+                            <%}%>
                         <%}%>
                     </div>
                     <div class="row">

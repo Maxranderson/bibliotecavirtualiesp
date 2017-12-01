@@ -2,6 +2,7 @@ module.exports = function (app) {
 
     const Publicacao = app.models.Publicacao;
     const Mensagem = app.models.Mensagem;
+    const PublicacaoSearchFactory = app.factorys.PublicacaoSearchFactory;
 
     this.index = function (req, res) {
         Publicacao.lastFour(function (err, results) {
@@ -26,7 +27,12 @@ module.exports = function (app) {
             pageCount: 1,
             pageSize: 10
         };
-        Publicacao.list(paginacao, function (erro, results, count) {
+        if(req.query.keyWord){
+            Publicacao.listWithSearch(PublicacaoSearchFactory.newFilterFromSimpleSearch(req.query), paginacao, listarPublicacoes);
+        }else{
+            Publicacao.list(paginacao, listarPublicacoes);
+        }
+        function listarPublicacoes(erro, results, count){
             var publicacoes = [{}];
             var msgm = new Mensagem();
             msgm.addError(req.flash('dangerMessage'));
@@ -45,8 +51,10 @@ module.exports = function (app) {
                 mensagem: msgm,
                 downloadPath: (app.locals.variables.downloadPath + 'publicacoes/')
             });
-        });
+        }
     };
+
+
 
     return this;
 };

@@ -1,3 +1,7 @@
+.publicacoes-row {
+    min-height: 500px;
+}
+
 .logo-container {
     width: 321px !important;
 }
