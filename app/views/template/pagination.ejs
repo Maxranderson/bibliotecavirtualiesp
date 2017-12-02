@@ -1,20 +1,20 @@
 <div class="pagination-container justify-content-center">
     <ul class="pagination pagination-primary">
         <li class="page-item arrow-margin-left">
-            <a class="page-link" href="?page=<%=paginacao.currentPage==1?1:paginacao.currentPage-1%>" aria-label="Previous">
+            <a class="page-link" href="?page=<%=paginacao.currentPage==1?1:paginacao.currentPage-1%><%=advanced?"&advanced=true":""%>" aria-label="Previous">
                 <span aria-hidden="true"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
             </a>
         </li>
 
 
         <%for(var i = 1; i<=paginacao.pageCount;i++){%>
-        <li class="page-item <%= i==paginacao.currentPage?"active":""%>"><a class="page-link" href="?page=<%=i%>"><%=i%></a></li>
+        <li class="page-item <%= i==paginacao.currentPage?"active":""%>"><a class="page-link" href="?page=<%=i%><%=advanced?"&advanced=true":""%>"><%=i%></a></li>
         <%}%>
 
 
 
         <li class="page-item arrow-margin-right">
-            <a class="page-link" href="?page=<%=paginacao.currentPage==paginacao.pageCount?paginacao.currentPage:(paginacao.currentPage+1)%>" aria-label="Next">
+            <a class="page-link" href="?page=<%=paginacao.currentPage==paginacao.pageCount?paginacao.currentPage:(paginacao.currentPage+1)%><%=advanced?"&advanced=true":""%>" aria-label="Next">
                 <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
             </a>
         </li>

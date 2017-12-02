@@ -6,6 +6,9 @@
                 <h4 class="modal-title text-center" id="modalLabel<%=publicacao.id%>"><%=publicacao.titulo%></h4>
             </div>
             <div class="modal-body">
+                <div class="modal-publicacao-img">
+                    <img src="<%=publicacao.capa ? '/files/capas/'+publicacao.capa :'/img/mini-livros.jpg'%>" alt="">
+                </div>
                 <p><strong>Autor: </strong><%=publicacao.autor%></p>
                 <p><strong>Tipo de Publicação: </strong><%=publicacao.tipo_publicacao%></p>
                 <p><strong>Arquivo: </strong> <a href="/<%=downloadPath+publicacao.arquivo%>" title="Baixar Arquivo"><i class="material-icons">file_download</i></a>

@@ -5,6 +5,7 @@ module.exports = function(app) {
     //Rotas das páginas do front
     app.get('/', controllers.PageController.index);
     app.get('/publicacoes', controllers.PageController.listaPublicacoes);
+    app.post('/publicacoes', controllers.PageController.addSearchInSession, controllers.PageController.listaPublicacoes);
     app.get('/files/publicacoes/:nome', controllers.PublicacaoController.downloadFile);
     app.get('/files/capas/:nome', controllers.PublicacaoController.downloadImage);
 

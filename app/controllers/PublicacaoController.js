@@ -191,16 +191,29 @@ module.exports = function (app) {
     };
 
     this.deletar = function (req, res) {
-
-        Publicacao.delete({id: req.body.id}, function (err, results) {
-            if (err) {
+        Publicacao.findById({id: req.body.id}, function(err, results){
+            if(err){
                 console.error(err);
-                req.flash('dangerMessage', err.message);
-            } else {
-                req.flash('successMessage', app.locals.variables.mensagem.publicacao.sucessoDeletado);
+                req.flash('dangerMessage', err.message)
             }
-            res.redirect('/admin/publicacoes');
+            if(results || results[0]){
+
+                if(arquivoFileExists(results[0].arquivo)) deleteArquivo(results[0].arquivo);
+                if(capaFileExists(results[0].capa)) deleteCapa(results[0].capa);
+                Publicacao.delete({id: req.body.id}, function (err, results) {
+                    if (err) {
+                        console.error(err);
+                        req.flash('dangerMessage', err.message);
+                    } else {
+                        req.flash('successMessage', app.locals.variables.mensagem.publicacao.sucessoDeletado);
+                    }
+                    res.redirect('/admin/publicacoes');
+                });
+            }else{
+                res.redirect('/admin/publicacoes', "Não foi possível deletar a publicação");
+            }
         });
+
 
     };
 

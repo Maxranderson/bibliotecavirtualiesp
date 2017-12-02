@@ -7,74 +7,102 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <i class="now-ui-icons ui-1_simple-remove"></i>
                 </button>
-                <h4 class="title title-up">Modal title</h4>
+                <h4 class="title title-up">Pesquisa avançada</h4>
             </div>
             <div class="modal-body">
-                <form class="clear forms" id="buscaAvancada" method="post" action="/" accept-charset="utf-8"><div style="display:none;"><input type="hidden" name="_method" value="POST"></div>			<fieldset>
-                        <div class="input select"><label for="PublicacaoOpcoesTitulo">Opções do título</label><select name="data[Publicacao][opcoes_titulo]" id="PublicacaoOpcoesTitulo">
-                                <option value="0">Iniciando com</option>
-                                <option value="1" selected="selected">que contém</option>
-                                <option value="2">que não contém</option>
-                            </select></div>				<br class="clear">
-                        <div class="input text"><label for="PublicacaoTituloAvancada">Título</label><input name="data[Publicacao][tituloAvancada]" type="text" id="PublicacaoTituloAvancada"></div>				<br class="clear">
-                        <div class="input select"><label for="PublicacaoTipo">Tipo</label><select name="data[Publicacao][tipo]" id="PublicacaoTipo">
-                                <option value="">selecione</option>
-                                <option value="5">Artigo</option>
-                                <option value="6">Dissertação</option>
-                                <option value="1">Fascículo</option>
-                                <option value="4">Livro</option>
-                                <option value="7">Monografia</option>
-                                <option value="9">Plano de Aula</option>
-                                <option value="3">Revista</option>
-                                <option value="8">Tese</option>
-                            </select></div>				<br class="clear">
-                        <div class="input text required"><label for="PublicacaoAutor">Autor</label><input name="data[Publicacao][autor]" type="text" maxlength="255" id="PublicacaoAutor"></div>				<br class="clear">
-                        <div class="input text"><label for="PublicacaoOrganizador">Organizador</label><input name="data[Publicacao][organizador]" type="text" maxlength="255" id="PublicacaoOrganizador"></div>				<br class="clear">
-                        <div class="input select"><label for="PublicacaoPublicacaoCursoIdAvancada">Curso</label><select name="data[Publicacao][publicacao_curso_id_avancada]" id="PublicacaoPublicacaoCursoIdAvancada">
-                                <option value="">selecione</option>
-                                <option value="2">Licenciatura em Ciências Biológicas</option>
-                                <option value="3">Licenciatura em Ciências Agrárias</option>
-                                <option value="4">Licenciatura Plena em Letras</option>
-                                <option value="5">Licenciatura em Matemática</option>
-                                <option value="6">Licenciatura em Pedagogia</option>
-                                <option value="7">Licenciatura em Ciências Naturais</option>
-                                <option value="8">Licenciatura Plena em Letras/LIBRAS</option>
-                                <option value="9">Gestão Pública Municipal</option>
-                                <option value="11">UFPB Virtual</option>
-                                <option value="12">Licenciatura em Computação</option>
-                                <option value="13">Licenciatura em Letras Espanhol</option>
-                                <option value="14">Licenciatura em Letras Inglês</option>
-                                <option value="15">Bacharelado em Administração Pública</option>
-                            </select></div>				<br class="clear">
-                        <div class="input select"><label for="opcoesAno">Ano</label><select name="data[Publicacao][opcoes_ano]" class="anos" id="opcoesAno">
-                                <option value="">selecione</option>
-                                <option value="0">igual</option>
-                                <option value="1">entre</option>
-                                <option value="2">maior que</option>
-                                <option value="3">menor que</option>
-                            </select></div>				<input name="data[Publicacao][anoInicial]" type="text" class="pqno anos" disabled="disabled" id="anoInicial" value="">				<input name="data[Publicacao][anoFinal]" type="text" class="pqno anos" disabled="disabled" id="anoFinal" value="">				<br class="clear">
-                        <div class="input select"><label for="PublicacaoSemestreAvancada">Semestre letivo</label><select name="data[Publicacao][semestreAvancada]" id="PublicacaoSemestreAvancada">
-                                <option value="0">nenhum</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                            </select></div>				<div class="input text"><label for="PublicacaoIsbnIssn">ISBN/ISSN</label><input name="data[Publicacao][isbn_issn]" type="text" class="pqno" maxlength="45" id="PublicacaoIsbnIssn"></div>				<br class="clear">
-                        <div class="input text"><label for="PublicacaoInstituicao">Instituição</label><input name="data[Publicacao][instituicao]" type="text" maxlength="255" id="PublicacaoInstituicao"></div>				<br class="clear">
-                        <div class="input text"><label for="PublicacaoEditora">Editora</label><input name="data[Publicacao][editora]" type="text" maxlength="255" id="PublicacaoEditora"></div>				<br class="clear">
-                        <div class="input text"><label for="PublicacaoNumeroEdicao">Número da edição</label><input name="data[Publicacao][numero_edicao]" type="text" maxlength="45" id="PublicacaoNumeroEdicao"></div>				<br class="clear">
-                        <div class="input textarea"><label for="PublicacaoPalavrasChaves">Palavras chaves</label><textarea name="data[Publicacao][palavras_chaves]" rows="1" cols="30" id="PublicacaoPalavrasChaves"></textarea></div>				<br class="clear"> <input type="submit" name="pesquisar" value="" title="Pesquisar" class="bts left bt-pesquisar" id="pesquisar">
-                    </fieldset>
+                <form action="/publicacoes?advanced=true" method="POST">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Título</label>
+                                <input type="text" class="form-control" name="titulo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Autor</label>
+                                <input type="text" class="form-control" name="autor">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Palavra-chave</label>
+                                <input type="text" class="form-control" name="palavras_chaves">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="control-label">Tipo da publicação</label>
+                            <select class="form-control" name="tipo_publicacao" title="Tipo da publicação">
+                                <option>Qualquer</option>
+                                <option>Artigo</option>
+                                <option>Dissertação</option>
+                                <option>Fascículo</option>
+                                <option>Livro</option>
+                                <option>Monografia</option>
+                                <option>Plano de Aula</option>
+                                <option>Revista</option>
+                                <option>Tese</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Curso</label>
+                                <input type="text" class="form-control" name="curso">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Editora</label>
+                                <input type="text" class="form-control" name="editora">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Número de edição</label>
+                                <input type="text" class="form-control" name="numero_edicao">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group label-floating">
+                                <label class="control-label">ISBN/ISSN</label>
+                                <input type="text" class="form-control" name="isbn_issn">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Idioma</label>
+                                <input type="text" class="form-control" name="idioma">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Ano</label>
+                                <input type="text" class="form-control" name="ano_publicacao">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Instituição</label>
+                                <input type="text" class="form-control" name="instituicao">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">Pesquisar</button>
+                    <div class="clearfix"></div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default">Nice Button</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>

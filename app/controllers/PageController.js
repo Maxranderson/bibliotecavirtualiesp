@@ -27,8 +27,13 @@ module.exports = function (app) {
             pageCount: 1,
             pageSize: 10
         };
-        if(req.query.keyWord){
-            Publicacao.listWithSearch(PublicacaoSearchFactory.newFilterFromSimpleSearch(req.query), paginacao, listarPublicacoes);
+        var advanced = null;
+        if(req.query.advanced){
+            advanced = req.flash('advanced')[0];
+            req.flash('advanced', advanced);
+        } else req.flash('advanced');
+        if(req.query.keyWord || advanced){
+            Publicacao.listWithSearch(PublicacaoSearchFactory.filterSearch(req.query.keyWord || advanced), paginacao, listarPublicacoes);
         }else{
             Publicacao.list(paginacao, listarPublicacoes);
         }
@@ -49,10 +54,16 @@ module.exports = function (app) {
                 paginacao: paginacao,
                 publicacoes: publicacoes,
                 mensagem: msgm,
-                downloadPath: (app.locals.variables.downloadPath + 'publicacoes/')
+                downloadPath: (app.locals.variables.downloadPath + 'publicacoes/'),
+                advanced: (advanced?true:false)
             });
         }
     };
+
+    this.addSearchInSession = function(req, res, next){
+        req.flash('advanced', req.body);
+        next();
+    }
 
 
 

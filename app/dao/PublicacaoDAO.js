@@ -41,7 +41,7 @@ module.exports = function (app) {
     }
 
     this.listWithSearch = function(search, paginacao, callback){
-        knex('publicacoes').count('* as qt').asCallback(function (erro, count) {
+        PublicacaoSearchFactory.applyPublicacaoFilters(search, knex('publicacoes')).count('* as qt').asCallback(function (erro, count) {
             var offset = paginacao.pageSize * (paginacao.currentPage - 1);
             PublicacaoSearchFactory.applyPublicacaoFilters(search, knex('publicacoes').select()).limit(parseInt(paginacao.pageSize)).offset(offset).asCallback(function (err, results) {
                 callback(err, results, count[0].qt);
